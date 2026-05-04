@@ -11,19 +11,17 @@
         .bg-primary { background-color: #1E40AF; }
         .text-primary { color: #1E40AF; }
         .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
-        .book-card:hover img { transform: translateY(-10px); transition: 0.3s; }
         
-        .qr-payment {
-            text-align: center;
-            font-family: 'Inter', sans-serif;
-            margin: 20px;
-        }
-        .qr-payment img {
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin: 10px auto;
-        }
+        /* Hiệu ứng dàn hàng khi click */
+        .book-stack img { transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; }
+        
+        /* Trạng thái dàn hàng (Spread) */
+        .is-spread .img-hsk3 { transform: translateX(110px) rotate(0deg) !important; z-index: 5; }
+        .is-spread .img-hsk2 { transform: translateX(0px) rotate(0deg) !important; z-index: 10; }
+        .is-spread .img-hsk1 { transform: translateX(-110px) rotate(0deg) !important; z-index: 15; }
+
+        .qr-payment { text-align: center; font-family: 'Inter', sans-serif; margin: 20px; }
+        .qr-payment img { border: 1px solid #ddd; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin: 10px auto; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -38,34 +36,29 @@
     <section class="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center border-b border-slate-100">
         <div class="md:w-1/2">
             <span class="text-blue-600 font-bold tracking-widest uppercase text-sm">Sách mới 2026</span>
-            
             <h2 class="text-4xl md:text-6xl font-extrabold mt-4 uppercase leading-[1.2] md:leading-[1.15] tracking-wide">
                 Vở Luyện Viết <br>
                 <span class="text-primary text-blue-600">HSK Phiên Bản 3.0</span>
             </h2>
-
             <p class="mt-6 text-slate-600 text-lg leading-relaxed">Bám sát chuẩn 3.0. Giúp bạn nắm vững từ vựng và quy tắc viết chữ Hán một cách khoa học từ cấp độ 1 đến cấp độ 3.</p>
             <div class="flex gap-4 mt-8">
                 <button onclick="openModal()" class="bg-primary text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:bg-blue-800 transition">Đặt hàng ngay</button>
-                <a href="#trien-lam" class="border border-blue-200 text-primary px-10 py-4 rounded-xl text-lg font-bold hover:bg-blue-50 transition flex items-center justify-center">Xem trọn bộ</a>
+                <p class="text-sm text-slate-400 mt-2 flex items-center">✨ Nhấn vào sách để xem chi tiết</p>
             </div>
         </div>
 
         <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center items-center">
-            <div class="relative group w-full max-w-[380px] h-[400px] flex items-center justify-center">
-                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-4/5 h-6 bg-black/10 rounded-[100%] blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+            <div id="bookStack" class="book-stack relative w-full max-w-[420px] h-[450px] flex items-center justify-center" onclick="toggleSpread()">
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-4/5 h-6 bg-black/10 rounded-[100%] blur-2xl"></div>
 
                 <img src="hsk3.jpg" alt="HSK 3" 
-                     class="absolute w-2/3 rounded-xl shadow-xl transition-all duration-500 
-                            -rotate-12 -translate-x-16 group-hover:-rotate-6 group-hover:-translate-x-20 group-hover:-translate-y-4">
+                     class="img-hsk3 absolute w-3/5 rounded-lg shadow-xl -rotate-12 -translate-x-12">
 
                 <img src="hsk2.jpg" alt="HSK 2" 
-                     class="absolute w-2/3 rounded-xl shadow-xl transition-all duration-500 
-                            rotate-12 translate-x-16 group-hover:rotate-6 group-hover:translate-x-20 group-hover:-translate-y-4">
+                     class="img-hsk2 absolute w-3/5 rounded-lg shadow-xl rotate-6 translate-x-4">
 
                 <img src="hsk1.jpg" alt="HSK 1" 
-                     class="relative z-10 w-2/3 rounded-xl shadow-2xl transition-all duration-500 
-                            group-hover:-translate-y-8">
+                     class="img-hsk1 absolute w-3/5 rounded-lg shadow-2xl rotate-0 z-20">
             </div>
         </div>
     </section>
@@ -74,16 +67,16 @@
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-12 uppercase tracking-tight">Triển lãm bộ sách</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="book-card">
-                    <img src="hsk1.jpg" alt="HSK 1" width="300" class="rounded-lg shadow-lg mx-auto mb-4">
+                <div class="book-card group cursor-pointer" onclick="openModal()">
+                    <img src="hsk1.jpg" alt="HSK 1" width="300" class="rounded-lg shadow-lg mx-auto mb-4 transition-transform group-hover:-translate-y-2">
                     <h3 class="font-bold italic text-blue-800">HSK 1</h3>
                 </div>
-                <div class="book-card">
-                    <img src="hsk2.jpg" alt="HSK 2" width="300" class="rounded-lg shadow-lg mx-auto mb-4">
+                <div class="book-card group cursor-pointer" onclick="openModal()">
+                    <img src="hsk2.jpg" alt="HSK 2" width="300" class="rounded-lg shadow-lg mx-auto mb-4 transition-transform group-hover:-translate-y-2">
                     <h3 class="font-bold italic text-blue-800">HSK 2</h3>
                 </div>
-                <div class="book-card">
-                    <img src="hsk3.jpg" alt="HSK 3" width="300" class="rounded-lg shadow-lg mx-auto mb-4">
+                <div class="book-card group cursor-pointer" onclick="openModal()">
+                    <img src="hsk3.jpg" alt="HSK 3" width="300" class="rounded-lg shadow-lg mx-auto mb-4 transition-transform group-hover:-translate-y-2">
                     <h3 class="font-bold italic text-blue-800">HSK 3</h3>
                 </div>
             </div>
@@ -93,7 +86,6 @@
     <div id="orderModal" class="modal flex items-center justify-center">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative m-4 overflow-y-auto max-h-[90vh]">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl">&times;</button>
-            
             <div id="formContent">
                 <h3 class="text-2xl font-bold text-center mb-6">Thông Tin Đặt Hàng</h3>
                 <form id="orderForm" class="space-y-4">
@@ -109,55 +101,49 @@
                     <button type="submit" class="w-full bg-primary text-white py-4 rounded-lg font-bold shadow-lg hover:bg-blue-700 transition">Tiếp tục thanh toán</button>
                 </form>
             </div>
-
             <div id="paymentContent" class="hidden space-y-4">
                 <div class="qr-payment">
                     <p class="font-bold text-slate-800">Thanh toán qua mã QR Techcombank:</p>
                     <img src="pr-pay.jpg" alt="Mã QR thanh toán" width="280">
-                    <p style="color: #666; font-size: 0.9em; margin-top: 10px;">Quét mã để hoàn tất đơn hàng</p>
-                    
-                    <div class="mt-4 p-3 bg-slate-50 rounded-lg text-sm text-left border border-slate-100">
+                    <div class="mt-4 p-3 bg-slate-50 rounded-lg text-sm text-left">
                         <p><b>Chủ tài khoản:</b> NGUYEN HUY CUONG</p>
                         <p><b>Nội dung:</b> [SĐT của bạn] - MUA SACH HSK</p>
                     </div>
                 </div>
-                <button onclick="showSuccess()" class="w-full bg-green-600 text-white py-4 rounded-lg font-bold hover:bg-green-700 transition">Tôi đã gửi tiền thành công</button>
+                <button onclick="showSuccess()" class="w-full bg-green-600 text-white py-4 rounded-lg font-bold">Tôi đã gửi tiền thành công</button>
             </div>
-
             <div id="successContent" class="hidden text-center space-y-6 py-10">
                 <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-4xl">✓</div>
                 <h3 class="text-2xl font-bold">Đặt hàng thành công!</h3>
-                <p class="text-slate-600">Thông tin đã được lưu lại. Chúng mình sẽ liên hệ xác nhận sớm nhất.</p>
                 <button onclick="closeModal()" class="text-blue-600 font-bold underline italic">Quay lại trang chủ</button>
             </div>
         </div>
     </div>
 
     <script>
+        // Hàm xử lý dàn hàng khi click
+        function toggleSpread() {
+            const stack = document.getElementById('bookStack');
+            stack.classList.toggle('is-spread');
+        }
+
         const modal = document.getElementById('orderModal');
         const form = document.getElementById('orderForm');
-        
         function openModal() { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
         function closeModal() { modal.style.display = 'none'; document.body.style.overflow = 'auto'; resetModal(); }
-
         function resetModal() {
             document.getElementById('formContent').classList.remove('hidden');
             document.getElementById('paymentContent').classList.add('hidden');
             document.getElementById('successContent').classList.add('hidden');
         }
-
         form.onsubmit = function(e) {
             e.preventDefault();
             const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhSE1KxOWw_IKsCaG5XP2fqzCARcnbeS3sgdtgowUMbXTtdbRZf6b6M8myZ99mPx1RIg/exec';
             const data = Object.fromEntries(new FormData(form).entries());
-            
-            fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(data) })
-                .catch(error => console.error('Error!', error.message));
-
+            fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(data) }).catch(err => console.log(err));
             document.getElementById('formContent').classList.add('hidden');
             document.getElementById('paymentContent').classList.remove('hidden');
         }
-
         function showSuccess() {
             document.getElementById('paymentContent').classList.add('hidden');
             document.getElementById('successContent').classList.remove('hidden');
