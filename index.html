@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vở luyện viết HSK 1, 2, 3 - Phiên bản 3.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .bg-primary { background-color: #1E40AF; }
+        .text-primary { color: #1E40AF; }
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
+        .book-card:hover img { transform: translateY(-10px); transition: 0.3s; }
+        
+        /* Cập nhật style cho phần QR thanh toán mới */
+        .qr-payment {
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            margin: 20px;
+        }
+        .qr-payment img {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-primary italic">HSK 3.0 Pro</h1>
+            <button onclick="openModal()" class="bg-primary text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-md">Đặt mua ngay</button>
+        </div>
+    </header>
+
+    <section class="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center border-b border-slate-100">
+        <div class="md:w-1/2">
+            <span class="text-blue-600 font-bold tracking-widest uppercase text-sm">Sách mới 2026</span>
+            <h2 class="text-4xl md:text-6xl font-extrabold mt-4 leading-tight">Vở Luyện Viết <br><span class="text-primary text-blue-600">HSK Phiên Bản 3.0</span></h2>
+            <p class="mt-6 text-slate-600 text-lg leading-relaxed">Bám sát chuẩn 3.0. Giúp bạn nắm vững từ vựng và quy tắc viết chữ Hán một cách khoa học.</p>
+            <div class="flex gap-4 mt-8">
+                <button onclick="openModal()" class="bg-primary text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:bg-blue-800 transition">Đặt hàng ngay</button>
+                <a href="#trien-lam" class="border border-blue-200 text-primary px-10 py-4 rounded-xl text-lg font-bold hover:bg-blue-50 transition flex items-center justify-center">Xem trọn bộ</a>
+            </div>
+        </div>
+        <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center">
+            <img src="images/bia-hsk1.jpg" alt="HSK 3.0" class="w-full max-w-[300px] rounded-2xl shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
+        </div>
+    </section>
+
+    <section id="trien-lam" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-12 uppercase tracking-tight">Triển lãm bộ sách</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="book-card">
+                    <img src="images/bia-hsk1.jpg" alt="HSK 1" width="300" class="rounded-lg shadow-lg mx-auto mb-4">
+                    <h3 class="font-bold italic text-blue-800">HSK 1</h3>
+                </div>
+                <div class="book-card">
+                    <img src="images/bia-hsk2.jpg" alt="HSK 2" width="300" class="rounded-lg shadow-lg mx-auto mb-4">
+                    <h3 class="font-bold italic text-blue-800">HSK 2</h3>
+                </div>
+                <div class="book-card">
+                    <img src="images/bia-hsk3.jpg" alt="HSK 3" width="300" class="rounded-lg shadow-lg mx-auto mb-4">
+                    <h3 class="font-bold italic text-blue-800">HSK 3</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="orderModal" class="modal flex items-center justify-center">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative m-4 overflow-y-auto max-h-[90vh]">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl">&times;</button>
+            
+            <div id="formContent">
+                <h3 class="text-2xl font-bold text-center mb-6">Thông Tin Đặt Hàng</h3>
+                <form id="orderForm" class="space-y-4">
+                    <input type="text" name="fullName" placeholder="Họ và tên" required class="w-full border border-slate-200 p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="tel" name="phone" placeholder="Số điện thoại" required class="w-full border border-slate-200 p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" name="address" placeholder="Địa chỉ giao hàng" required class="w-full border border-slate-200 p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-500">
+                    <select name="bookType" class="w-full border border-slate-200 p-3 rounded-lg outline-none">
+                        <option value="Combo 3 cuốn">Combo Trọn bộ HSK 1, 2, 3</option>
+                        <option value="HSK 1">Vở lẻ HSK 1</option>
+                        <option value="HSK 2">Vở lẻ HSK 2</option>
+                        <option value="HSK 3">Vở lẻ HSK 3</option>
+                    </select>
+                    <button type="submit" class="w-full bg-primary text-white py-4 rounded-lg font-bold shadow-lg hover:bg-blue-700 transition">Tiếp tục thanh toán</button>
+                </form>
+            </div>
+
+            <div id="paymentContent" class="hidden space-y-4">
+                <div class="qr-payment">
+                    <p class="font-bold text-slate-800">Thanh toán qua mã QR Techcombank:</p>
+                    <img src="pr-pay.jpg" alt="Mã QR thanh toán" width="280">
+                    <p style="color: #666; font-size: 0.9em; margin-top: 10px;">Quét mã để hoàn tất đơn hàng</p>
+                    
+                    <div class="mt-4 p-3 bg-slate-50 rounded-lg text-sm text-left border border-slate-100">
+                        <p><b>Chủ tài khoản:</b> NGUYEN HUY CUONG</p>
+                        <p><b>Nội dung:</b> [SĐT của bạn] - MUA SACH HSK</p>
+                    </div>
+                </div>
+                <button onclick="showSuccess()" class="w-full bg-green-600 text-white py-4 rounded-lg font-bold hover:bg-green-700 transition">Tôi đã gửi tiền thành công</button>
+            </div>
+
+            <div id="successContent" class="hidden text-center space-y-6 py-10">
+                <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-4xl">✓</div>
+                <h3 class="text-2xl font-bold">Đặt hàng thành công!</h3>
+                <p class="text-slate-600">Thông tin đã được lưu lại. Chúng mình sẽ liên hệ xác nhận sớm nhất.</p>
+                <button onclick="closeModal()" class="text-blue-600 font-bold underline italic">Quay lại trang chủ</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('orderModal');
+        const form = document.getElementById('orderForm');
+        
+        function openModal() { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        function closeModal() { modal.style.display = 'none'; document.body.style.overflow = 'auto'; resetModal(); }
+
+        function resetModal() {
+            document.getElementById('formContent').classList.remove('hidden');
+            document.getElementById('paymentContent').classList.add('hidden');
+            document.getElementById('successContent').classList.add('hidden');
+        }
+
+        form.onsubmit = function(e) {
+            e.preventDefault();
+            // Lấy link Google Apps Script của bạn dán vào đây
+            const SCRIPT_URL = 'THAY_LINK_SCRIPT_CỦA_BẠN_VÀO_ĐÂY';
+            const data = Object.fromEntries(new FormData(form).entries());
+            
+            fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(data) })
+                .catch(error => console.error('Error!', error.message));
+
+            document.getElementById('formContent').classList.add('hidden');
+            document.getElementById('paymentContent').classList.remove('hidden');
+        }
+
+        function showSuccess() {
+            document.getElementById('paymentContent').classList.add('hidden');
+            document.getElementById('successContent').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
