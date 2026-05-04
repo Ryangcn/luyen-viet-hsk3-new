@@ -11,25 +11,43 @@
         .bg-primary { background-color: #1E40AF; }
         .text-primary { color: #1E40AF; }
         .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
+        
         .book-stack img { transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; }
         .is-spread .img-hsk3 { transform: translateX(110px) rotate(0deg) !important; z-index: 5; }
         .is-spread .img-hsk2 { transform: translateX(0px) rotate(0deg) !important; z-index: 10; }
         .is-spread .img-hsk1 { transform: translateX(-110px) rotate(0deg) !important; z-index: 15; }
+        
         @media (max-width: 768px) {
             .book-stack { height: 320px !important; margin-top: 20px; }
             .book-stack img { width: 55% !important; }
             .is-spread .img-hsk3 { transform: translateX(70px) rotate(0deg) !important; }
             .is-spread .img-hsk1 { transform: translateX(-70px) rotate(0deg) !important; }
         }
-        .qr-payment img { border: 1px solid #ddd; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin: 10px auto; }
+
+        /* Hiệu ứng rung nhẹ cho nút giỏ hàng khi thêm đồ */
+        @keyframes shake {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .cart-bump { animation: shake 0.3s ease-in-out; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
+    <div id="floatingCart" class="fixed bottom-6 right-6 z-50 transition-all duration-300 transform scale-0" onclick="openModal()">
+        <button class="bg-blue-600 text-white p-4 rounded-full shadow-2xl hover:bg-blue-700 flex items-center justify-center relative">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <span id="cartBadge" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white">0</span>
+        </button>
+    </div>
+
     <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <h1 class="text-xl font-bold text-primary italic">HSK 3.0 Pro</h1>
-            <button onclick="openModal()" class="bg-primary text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition shadow-md">Thanh toán ngay</button>
+            <button onclick="openModal()" class="bg-primary text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition">Giỏ hàng</button>
         </div>
     </header>
 
@@ -40,10 +58,7 @@
                 Vở Luyện Viết <br>
                 <span class="text-primary text-blue-600">HSK Phiên Bản 3.0</span>
             </h2>
-            <p class="mt-6 text-slate-600 text-lg leading-relaxed">Bám sát chuẩn HSK 3.0 mới nhất. Hệ thống hóa từ vựng từ cơ bản đến nâng cao.</p>
-            <div class="flex gap-4 mt-8">
-                <a href="#trien-lam" class="bg-primary text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:bg-blue-800 transition">Mua sách ngay</a>
-            </div>
+            <p class="mt-6 text-slate-600 text-lg leading-relaxed">Nhấn vào bộ sách để trải nghiệm hiệu ứng hoặc chọn mua lẻ bên dưới.</p>
         </div>
         <div class="md:w-1/2 mt-8 md:mt-0 flex justify-center items-center w-full">
             <div id="bookStack" class="book-stack relative w-full max-w-[420px] h-[450px] flex items-center justify-center overflow-visible" onclick="toggleSpread()">
@@ -57,36 +72,33 @@
 
     <section id="trien-lam" class="py-20 bg-white">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold mb-12 uppercase tracking-tight">Chi tiết & Đặt mua</h2>
+            <h2 class="text-3xl font-bold mb-12 uppercase tracking-tight">Chọn sách vào giỏ</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 
-                <div class="book-card p-6 border border-slate-100 rounded-2xl hover:shadow-xl transition shadow-sm">
-                    <img src="hsk1.jpg" class="rounded-lg shadow-md mx-auto mb-4 w-48">
-                    <h3 class="font-bold text-xl text-blue-800">VỞ LUYỆN VIẾT HSK 1</h3>
-                    <p class="text-slate-500 text-sm mt-2 mb-4">Số lượng từ vựng: <b>500 từ</b></p>
-                    <div class="flex justify-between items-center bg-slate-50 p-3 rounded-lg">
-                        <span class="font-bold text-lg text-red-600">100.000đ</span>
-                        <button onclick="addToCart('HSK 1', 100000)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 shadow-md">+</button>
+                <div class="book-card p-6 border border-slate-100 rounded-2xl hover:shadow-xl transition">
+                    <img src="hsk1.jpg" class="rounded-lg shadow-md mx-auto mb-4 w-44">
+                    <h3 class="font-bold text-lg text-blue-800">HSK 1 (500 từ)</h3>
+                    <div class="flex justify-between items-center mt-4 bg-slate-50 p-2 rounded-lg">
+                        <span class="font-bold text-red-600">100.000đ</span>
+                        <button onclick="addToCart('HSK 1', 100000)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700">+</button>
                     </div>
                 </div>
 
-                <div class="book-card p-6 border border-slate-100 rounded-2xl hover:shadow-xl transition shadow-sm">
-                    <img src="hsk2.jpg" class="rounded-lg shadow-md mx-auto mb-4 w-48">
-                    <h3 class="font-bold text-xl text-blue-800">VỞ LUYỆN VIẾT HSK 2</h3>
-                    <p class="text-slate-500 text-sm mt-2 mb-4">Số lượng từ vựng: <b>1272 từ</b></p>
-                    <div class="flex justify-between items-center bg-slate-50 p-3 rounded-lg">
-                        <span class="font-bold text-lg text-red-600">139.000đ</span>
-                        <button onclick="addToCart('HSK 2', 139000)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 shadow-md">+</button>
+                <div class="book-card p-6 border border-slate-100 rounded-2xl hover:shadow-xl transition">
+                    <img src="hsk2.jpg" class="rounded-lg shadow-md mx-auto mb-4 w-44">
+                    <h3 class="font-bold text-lg text-blue-800">HSK 2 (1272 từ)</h3>
+                    <div class="flex justify-between items-center mt-4 bg-slate-50 p-2 rounded-lg">
+                        <span class="font-bold text-red-600">139.000đ</span>
+                        <button onclick="addToCart('HSK 2', 139000)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700">+</button>
                     </div>
                 </div>
 
-                <div class="book-card p-6 border border-slate-100 rounded-2xl hover:shadow-xl transition shadow-sm">
-                    <img src="hsk3.jpg" class="rounded-lg shadow-md mx-auto mb-4 w-48">
-                    <h3 class="font-bold text-xl text-blue-800">VỞ LUYỆN VIẾT HSK 3</h3>
-                    <p class="text-slate-500 text-sm mt-2 mb-4">Số lượng từ vựng: <b>2245 từ</b></p>
-                    <div class="flex justify-between items-center bg-slate-50 p-3 rounded-lg">
-                        <span class="font-bold text-lg text-red-600">168.000đ</span>
-                        <button onclick="addToCart('HSK 3', 168000)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700 shadow-md">+</button>
+                <div class="book-card p-6 border border-slate-100 rounded-2xl hover:shadow-xl transition">
+                    <img src="hsk3.jpg" class="rounded-lg shadow-md mx-auto mb-4 w-44">
+                    <h3 class="font-bold text-lg text-blue-800">HSK 3 (2245 từ)</h3>
+                    <div class="flex justify-between items-center mt-4 bg-slate-50 p-2 rounded-lg">
+                        <span class="font-bold text-red-600">168.000đ</span>
+                        <button onclick="addToCart('HSK 3', 168000)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700">+</button>
                     </div>
                 </div>
 
@@ -95,52 +107,48 @@
     </section>
 
     <div id="orderModal" class="modal flex items-center justify-center">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative m-4 overflow-y-auto max-h-[95vh]">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative m-4 overflow-y-auto max-h-[90vh]">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl">&times;</button>
             
             <div id="formContent">
-                <h3 class="text-2xl font-bold text-center mb-6">Chi tiết đơn hàng</h3>
-                
-                <div id="cartSummary" class="mb-6 space-y-2 text-sm border-b pb-4"></div>
-
-                <div class="mb-6">
-                    <label class="block text-xs font-bold text-slate-500 mb-1 uppercase">Mã giảm giá (nếu có)</label>
-                    <div class="flex gap-2">
-                        <input type="text" id="voucherInput" placeholder="Nhập mã tại đây" class="flex-1 border border-slate-200 p-2 rounded-lg outline-none focus:ring-1 focus:ring-blue-500 uppercase">
-                        <button onclick="applyVoucher()" class="bg-slate-800 text-white px-4 py-2 rounded-lg text-sm">Áp dụng</button>
+                <h3 class="text-xl font-bold mb-4 border-b pb-2">Giỏ hàng của bạn</h3>
+                <div id="cartSummary" class="space-y-3 mb-6 max-h-40 overflow-y-auto pr-2">
                     </div>
-                    <p id="voucherMsg" class="text-xs mt-1"></p>
+
+                <div class="bg-slate-50 p-4 rounded-xl mb-6 space-y-3">
+                    <div class="flex gap-2">
+                        <input type="text" id="voucherInput" placeholder="Nhập mã giảm giá" class="flex-1 border p-2 rounded-lg text-sm uppercase">
+                        <button onclick="applyVoucher()" class="bg-slate-800 text-white px-3 rounded-lg text-xs">Áp dụng</button>
+                    </div>
+                    <p id="voucherMsg" class="text-xs"></p>
+                    <div class="flex justify-between font-bold text-lg border-t pt-2">
+                        <span>Tổng tiền:</span>
+                        <span id="finalTotal" class="text-red-600">0đ</span>
+                    </div>
                 </div>
 
-                <div class="flex justify-between items-center mb-6 p-4 bg-blue-50 rounded-xl">
-                    <span class="font-bold">Tổng thanh toán:</span>
-                    <span id="finalTotal" class="text-xl font-bold text-red-600">0đ</span>
-                </div>
-
-                <form id="orderForm" class="space-y-4">
-                    <input type="text" name="fullName" placeholder="Họ và tên" required class="w-full border border-slate-200 p-3 rounded-lg outline-none">
-                    <input type="tel" name="phone" placeholder="Số điện thoại" required class="w-full border border-slate-200 p-3 rounded-lg outline-none">
-                    <input type="text" name="address" placeholder="Địa chỉ giao hàng" required class="w-full border border-slate-200 p-3 rounded-lg outline-none">
-                    <button type="submit" class="w-full bg-primary text-white py-4 rounded-lg font-bold shadow-lg hover:bg-blue-700 transition">Tiếp tục thanh toán QR</button>
+                <form id="orderForm" class="space-y-3">
+                    <input type="text" name="fullName" placeholder="Họ tên" required class="w-full border p-3 rounded-lg">
+                    <input type="tel" name="phone" id="userPhone" placeholder="Số điện thoại" required class="w-full border p-3 rounded-lg">
+                    <input type="text" name="address" placeholder="Địa chỉ giao hàng" required class="w-full border p-3 rounded-lg">
+                    <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-lg font-bold">Thanh toán ngay</button>
                 </form>
             </div>
 
-            <div id="paymentContent" class="hidden space-y-4 text-center">
-                <p class="font-bold text-slate-800">Thanh toán qua mã QR Techcombank:</p>
-                <img src="pr-pay.jpg" alt="Mã QR" width="280" class="mx-auto">
-                <div class="p-4 bg-slate-50 rounded-lg text-sm text-left">
-                    <p><b>Chủ TK:</b> NGUYEN HUY CUONG</p>
-                    <p><b>Số tiền:</b> <span id="paymentValue" class="text-red-600 font-bold"></span></p>
-                    <p><b>Nội dung:</b> <span id="paymentNote"></span></p>
+            <div id="paymentContent" class="hidden text-center space-y-4">
+                <p class="font-bold">Chuyển khoản qua QR Techcombank</p>
+                <img src="pr-pay.jpg" class="mx-auto rounded-lg shadow-md" width="250">
+                <div class="text-left bg-slate-50 p-4 rounded-lg text-sm">
+                    <p><b>Số tiền:</b> <span id="payAmount" class="text-red-600 font-bold"></span></p>
+                    <p><b>Nội dung:</b> <span id="payNote" class="font-mono"></span></p>
                 </div>
-                <button onclick="showSuccess()" class="w-full bg-green-600 text-white py-4 rounded-lg font-bold">Tôi đã gửi tiền thành công</button>
+                <button onclick="showSuccess()" class="w-full bg-green-600 text-white py-4 rounded-lg font-bold">Xác nhận đã chuyển tiền</button>
             </div>
 
-            <div id="successContent" class="hidden text-center space-y-4 py-10">
-                <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-3xl">✓</div>
+            <div id="successContent" class="hidden text-center py-10 space-y-4">
+                <div class="text-5xl">🎉</div>
                 <h3 class="text-2xl font-bold">Đặt hàng thành công!</h3>
-                <p class="text-slate-600">Chúng mình sẽ liên hệ với bạn ngay.</p>
-                <button onclick="closeModal()" class="text-blue-600 underline">Quay lại trang chủ</button>
+                <button onclick="closeModal()" class="text-blue-600 underline">Quay lại</button>
             </div>
         </div>
     </div>
@@ -149,78 +157,79 @@
         let cart = [];
         let discountPercent = 0;
 
-        function toggleSpread() {
-            document.getElementById('bookStack').classList.toggle('is-spread');
-        }
+        function toggleSpread() { document.getElementById('bookStack').classList.toggle('is-spread'); }
 
         function addToCart(name, price) {
             cart.push({name, price});
-            updateCartUI();
-            openModal();
+            updateCart();
+            
+            // Hiệu ứng nút giỏ hàng nổi lên và rung nhẹ
+            const btn = document.getElementById('floatingCart');
+            btn.classList.remove('scale-0');
+            btn.classList.add('scale-100', 'cart-bump');
+            setTimeout(() => btn.classList.remove('cart-bump'), 300);
         }
 
-        function updateCartUI() {
+        function updateCart() {
             const summary = document.getElementById('cartSummary');
+            const badge = document.getElementById('cartBadge');
             let subtotal = 0;
-            summary.innerHTML = cart.map(item => {
+
+            badge.innerText = cart.length;
+            summary.innerHTML = cart.map((item, index) => {
                 subtotal += item.price;
-                return `<div class="flex justify-between"><span>${item.name}</span><span>${item.price.toLocaleString()}đ</span></div>`;
+                return `<div class="flex justify-between text-sm italic">
+                            <span>${item.name}</span>
+                            <div class="flex gap-4">
+                                <span>${item.price.toLocaleString()}đ</span>
+                                <button onclick="removeItem(${index})" class="text-red-400">✕</button>
+                            </div>
+                        </div>`;
             }).join('');
 
-            const discountAmount = subtotal * (discountPercent / 100);
-            const final = subtotal - discountAmount;
-            
+            if(cart.length === 0) {
+                summary.innerHTML = "<p class='text-slate-400 text-center py-4'>Giỏ hàng trống</p>";
+                document.getElementById('floatingCart').classList.add('scale-0');
+            }
+
+            const final = subtotal * (1 - discountPercent / 100);
             document.getElementById('finalTotal').innerText = final.toLocaleString() + 'đ';
-            document.getElementById('paymentValue').innerText = final.toLocaleString() + 'đ';
+            document.getElementById('payAmount').innerText = final.toLocaleString() + 'đ';
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCart();
         }
 
         function applyVoucher() {
             const code = document.getElementById('voucherInput').value.trim().toLowerCase();
             const msg = document.getElementById('voucherMsg');
-            
-            if(code === 'ryanchinese') {
-                discountPercent = 5;
-                msg.innerText = "✓ Đã áp dụng voucher 5%";
-                msg.className = "text-xs mt-1 text-green-600";
-            } else if(code === 'ryanchinese86') {
-                discountPercent = 10;
-                msg.innerText = "✓ Đã áp dụng voucher 10%";
-                msg.className = "text-xs mt-1 text-green-600";
-            } else if(code === 'ryansuperhsk') {
-                discountPercent = 20;
-                msg.innerText = "✓ Đã áp dụng voucher ĐẶC BIỆT 20%";
-                msg.className = "text-xs mt-1 text-green-600 font-bold";
-            } else {
-                discountPercent = 0;
-                msg.innerText = "✕ Mã không hợp lệ";
-                msg.className = "text-xs mt-1 text-red-600";
-            }
-            updateCartUI();
+            if(code === 'ryanchinese') discountPercent = 5;
+            else if(code === 'ryanchinese86') discountPercent = 10;
+            else if(code === 'ryansuperhsk') discountPercent = 20;
+            else discountPercent = 0;
+
+            msg.innerText = discountPercent > 0 ? `✓ Giảm ${discountPercent}%` : "✕ Mã không đúng";
+            msg.className = discountPercent > 0 ? "text-xs text-green-600" : "text-xs text-red-600";
+            updateCart();
         }
 
         const modal = document.getElementById('orderModal');
-        const form = document.getElementById('orderForm');
-
-        function openModal() { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
-        function closeModal() { modal.style.display = 'none'; document.body.style.overflow = 'auto'; resetModal(); }
-        
+        function openModal() { modal.style.display = 'flex'; updateCart(); }
+        function closeModal() { modal.style.display = 'none'; resetModal(); }
         function resetModal() {
             document.getElementById('formContent').classList.remove('hidden');
             document.getElementById('paymentContent').classList.add('hidden');
             document.getElementById('successContent').classList.add('hidden');
         }
 
-        form.onsubmit = function(e) {
+        document.getElementById('orderForm').onsubmit = function(e) {
             e.preventDefault();
-            const phone = form.phone.value;
-            document.getElementById('paymentNote').innerText = phone + " - MUA SACH HSK";
+            if(cart.length === 0) return alert("Giỏ hàng đang trống!");
             
-            // Logic gửi data sang Google Sheets (giữ nguyên của bạn)
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhSE1KxOWw_IKsCaG5XP2fqzCARcnbeS3sgdtgowUMbXTtdbRZf6b6M8myZ99mPx1RIg/exec';
-            const formData = new FormData(form);
-            formData.append('cart', JSON.stringify(cart));
-            formData.append('discount', discountPercent + '%');
-
+            const phone = document.getElementById('userPhone').value;
+            document.getElementById('payNote').innerText = phone + " - MUA SACH HSK";
             document.getElementById('formContent').classList.add('hidden');
             document.getElementById('paymentContent').classList.remove('hidden');
         }
@@ -228,7 +237,8 @@
         function showSuccess() {
             document.getElementById('paymentContent').classList.add('hidden');
             document.getElementById('successContent').classList.remove('hidden');
-            cart = []; // Reset giỏ hàng
+            cart = []; 
+            updateCart();
         }
     </script>
 </body>
