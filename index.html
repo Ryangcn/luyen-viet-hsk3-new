@@ -11,14 +11,29 @@
         .bg-primary { background-color: #1E40AF; }
         .text-primary { color: #1E40AF; }
         .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
+        .book-card:hover img { transform: translateY(-10px); transition: 0.3s; }
         
-        /* Hiệu ứng dàn hàng khi click */
+        /* HIỆU ỨNG DÀN HÀNG KHI CLICK */
         .book-stack img { transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; }
         
-        /* Trạng thái dàn hàng (Spread) */
+        /* Trạng thái dàn hàng mặc định trên Máy tính */
         .is-spread .img-hsk3 { transform: translateX(110px) rotate(0deg) !important; z-index: 5; }
         .is-spread .img-hsk2 { transform: translateX(0px) rotate(0deg) !important; z-index: 10; }
         .is-spread .img-hsk1 { transform: translateX(-110px) rotate(0deg) !important; z-index: 15; }
+
+        /* ĐIỀU CHỈNH RIÊNG CHO ĐIỆN THOẠI (Responsive) */
+        @media (max-width: 768px) {
+            .book-stack {
+                height: 320px !important; 
+                margin-top: 20px;
+            }
+            .book-stack img {
+                width: 55% !important; 
+            }
+            /* Dàn hàng hẹp hơn để vừa màn hình điện thoại */
+            .is-spread .img-hsk3 { transform: translateX(70px) rotate(0deg) !important; }
+            .is-spread .img-hsk1 { transform: translateX(-70px) rotate(0deg) !important; }
+        }
 
         .qr-payment { text-align: center; font-family: 'Inter', sans-serif; margin: 20px; }
         .qr-payment img { border: 1px solid #ddd; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin: 10px auto; }
@@ -47,18 +62,18 @@
             </div>
         </div>
 
-        <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center items-center">
-            <div id="bookStack" class="book-stack relative w-full max-w-[420px] h-[450px] flex items-center justify-center" onclick="toggleSpread()">
-                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-4/5 h-6 bg-black/10 rounded-[100%] blur-2xl"></div>
+        <div class="md:w-1/2 mt-8 md:mt-0 flex justify-center items-center w-full">
+            <div id="bookStack" class="book-stack relative w-full max-w-[420px] h-[450px] flex items-center justify-center overflow-visible" onclick="toggleSpread()">
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-black/10 rounded-[100%] blur-xl"></div>
 
                 <img src="hsk3.jpg" alt="HSK 3" 
-                     class="img-hsk3 absolute w-3/5 rounded-lg shadow-xl -rotate-12 -translate-x-12">
+                     class="img-hsk3 absolute w-3/5 rounded-lg shadow-xl -rotate-12 -translate-x-12 border border-white/20">
 
                 <img src="hsk2.jpg" alt="HSK 2" 
-                     class="img-hsk2 absolute w-3/5 rounded-lg shadow-xl rotate-6 translate-x-4">
+                     class="img-hsk2 absolute w-3/5 rounded-lg shadow-xl rotate-6 translate-x-4 border border-white/20">
 
                 <img src="hsk1.jpg" alt="HSK 1" 
-                     class="img-hsk1 absolute w-3/5 rounded-lg shadow-2xl rotate-0 z-20">
+                     class="img-hsk1 absolute w-3/5 rounded-lg shadow-2xl rotate-0 z-20 border border-white/20">
             </div>
         </div>
     </section>
@@ -121,7 +136,6 @@
     </div>
 
     <script>
-        // Hàm xử lý dàn hàng khi click
         function toggleSpread() {
             const stack = document.getElementById('bookStack');
             stack.classList.toggle('is-spread');
