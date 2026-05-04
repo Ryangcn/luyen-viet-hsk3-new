@@ -130,7 +130,7 @@
         form.onsubmit = function(e) {
             e.preventDefault();
             // Lấy link Google Apps Script của bạn dán vào đây
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNcJpiGiljhOpBqqvra49k_fl8j8X3rdoCZcCRrKGuR9u7qtlYnRrrTE8sKrwKB8jY2A/exec';
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhSE1KxOWw_IKsCaG5XP2fqzCARcnbeS3sgdtgowUMbXTtdbRZf6b6M8myZ99mPx1RIg/exec';
             const data = Object.fromEntries(new FormData(form).entries());
             
             fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(data) })
