@@ -17,7 +17,6 @@
         .bg-primary { background-color: #1E40AF; }
         .text-primary { color: #1E40AF; }
         
-        /* Modal mặc định phải là hidden */
         .modal { 
             display: none; 
             position: fixed; 
@@ -52,7 +51,7 @@
         section { background: transparent !important; }
 
         .author-avatar {
-            border: 8px solid #ffffff;
+            border: 6px solid #ffffff;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
     </style>
@@ -106,7 +105,6 @@
                         <button onclick="addToCart('HSK 1', 100000)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700">+</button>
                     </div>
                 </div>
-
                 <div class="book-card p-6 bg-white/50 backdrop-blur-sm border border-slate-100 rounded-2xl hover:shadow-xl transition">
                     <img src="hsk2.jpg" class="rounded-lg shadow-md mx-auto mb-4 w-44">
                     <h3 class="font-bold text-lg text-blue-800">HSK 2 (1272 từ)</h3>
@@ -115,7 +113,6 @@
                         <button onclick="addToCart('HSK 2', 139000)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700">+</button>
                     </div>
                 </div>
-
                 <div class="book-card p-6 bg-white/50 backdrop-blur-sm border border-slate-100 rounded-2xl hover:shadow-xl transition">
                     <img src="hsk3.jpg" class="rounded-lg shadow-md mx-auto mb-4 w-44">
                     <h3 class="font-bold text-lg text-blue-800">HSK 3 (2245 từ)</h3>
@@ -131,18 +128,49 @@
     <section id="tac-gia" class="py-24 border-t border-slate-100">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-16 uppercase tracking-tight text-slate-900">Ban biên soạn cuốn sách</h2>
-            <div class="flex flex-col items-center">
-                <div class="relative mb-8">
-                    <img src="lethutrang.jpg" alt="Ths. Lê Thu Trang" class="author-avatar w-48 h-48 rounded-full object-cover border-8 border-white shadow-xl">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                
+                <div class="flex flex-col items-center">
+                    <div class="relative mb-6">
+                        <img src="lethutrang.jpg" alt="Ths. Lê Thu Trang" class="author-avatar w-44 h-44 rounded-full object-cover">
+                    </div>
+                    <div class="max-w-sm">
+                        <h3 class="text-xl font-bold text-blue-900 uppercase">Ths. Lê Thu Trang</h3>
+                        <p class="text-blue-700 font-medium text-sm">Giảng viên Đại học Bách Khoa</p>
+                        <p class="text-slate-600 mt-4 leading-relaxed text-sm italic">
+                            Chủ biên bộ vở luyện viết HSK 3.0 Pro<br>
+                            Hơn 10 năm kinh nghiệm giảng dạy Hán ngữ
+                        </p>
+                    </div>
                 </div>
-                <div class="max-w-lg">
-                    <h3 class="text-2xl font-bold text-blue-900">Ths. Lê Thu Trang</h3>
-                    <p class="text-lg text-blue-700 mt-2 font-medium">Giảng viên Đại học Bách Khoa</p>
-                    <p class="text-slate-600 mt-5 leading-relaxed italic text-sm">
-                        Chủ biên bộ vở luyện viết HSK 3.0 Pro<br>
-                        Hơn 10 năm kinh nghiệm giảng dạy Hán ngữ
-                    </p>
+
+                <div class="flex flex-col items-center">
+                    <div class="relative mb-6">
+                        <img src="luuthanhtai.jpg" alt="Ths. Lưu Thành Tài" class="author-avatar w-44 h-44 rounded-full object-cover">
+                    </div>
+                    <div class="max-w-sm">
+                        <h3 class="text-xl font-bold text-blue-900 uppercase">Ths. Lưu Thành Tài</h3>
+                        <p class="text-slate-600 mt-2 leading-relaxed text-sm italic">
+                            Chủ biên bộ vở luyện viết HSK 3.0 Pro<br>
+                            Hơn 10 năm kinh nghiệm giảng dạy Hán ngữ
+                        </p>
+                    </div>
                 </div>
+
+                <div class="flex flex-col items-center">
+                    <div class="relative mb-6">
+                        <img src="nguyenhuycuong.jpg" alt="Nguyễn Huy Cương" class="author-avatar w-44 h-44 rounded-full object-cover">
+                    </div>
+                    <div class="max-w-sm">
+                        <h3 class="text-xl font-bold text-blue-900 uppercase">Nguyễn Huy Cương</h3>
+                        <p class="text-blue-700 font-medium text-sm">Chuyên ngành Tiếng Trung thương mại, Đại học Sư phạm Thủ đô-Bắc Kinh</p>
+                        <p class="text-slate-600 mt-4 leading-relaxed text-sm italic">
+                            Chủ biên bộ vở luyện viết HSK 3.0 Pro
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -188,7 +216,6 @@
             <div id="successContent" class="hidden text-center py-10 space-y-4">
                 <div class="text-5xl">🎉</div>
                 <h3 class="text-2xl font-bold text-green-600">Đặt hàng thành công!</h3>
-                <p class="text-slate-500">Chúng tôi sẽ liên hệ xác nhận sớm nhất.</p>
                 <button onclick="closeModal()" class="text-blue-600 underline">Quay lại trang chủ</button>
             </div>
         </div>
@@ -212,7 +239,6 @@
         function addToCart(name, price) {
             cart.push({name, price});
             updateCart();
-            
             const btn = document.getElementById('floatingCart');
             btn.classList.remove('scale-0');
             btn.classList.add('scale-100', 'cart-bump');
@@ -223,7 +249,6 @@
             const summary = document.getElementById('cartSummary');
             const badge = document.getElementById('cartBadge');
             let subtotal = 0;
-
             badge.innerText = cart.length;
             summary.innerHTML = cart.map((item, index) => {
                 subtotal += item.price;
@@ -235,13 +260,11 @@
                             </div>
                         </div>`;
             }).join('');
-
             if(cart.length === 0) {
                 summary.innerHTML = "<p class='text-slate-400 text-center py-4'>Giỏ hàng trống</p>";
                 document.getElementById('floatingCart').classList.remove('scale-100');
                 document.getElementById('floatingCart').classList.add('scale-0');
             }
-
             const final = subtotal * (1 - discountPercent / 100);
             document.getElementById('finalTotal').innerText = final.toLocaleString() + 'đ';
             document.getElementById('payAmount').innerText = final.toLocaleString() + 'đ';
@@ -259,24 +282,14 @@
             else if(code === 'ryanchinese86') discountPercent = 10;
             else if(code === 'ryansuperhsk') discountPercent = 20;
             else discountPercent = 0;
-
             msg.innerText = discountPercent > 0 ? `✓ Giảm ${discountPercent}%` : "✕ Mã không đúng";
             msg.className = discountPercent > 0 ? "text-xs text-green-600" : "text-xs text-red-600";
             updateCart();
         }
 
         const modal = document.getElementById('orderModal');
-        // Sửa hàm openModal để đổi display từ none sang flex
-        function openModal() { 
-            modal.style.display = 'flex'; 
-            updateCart(); 
-        }
-        
-        function closeModal() { 
-            modal.style.display = 'none'; 
-            resetModal(); 
-        }
-        
+        function openModal() { modal.style.display = 'flex'; updateCart(); }
+        function closeModal() { modal.style.display = 'none'; resetModal(); }
         function resetModal() {
             document.getElementById('formContent').classList.remove('hidden');
             document.getElementById('paymentContent').classList.add('hidden');
@@ -286,10 +299,8 @@
         document.getElementById('orderForm').onsubmit = function(e) {
             e.preventDefault();
             if(cart.length === 0) return alert("Vui lòng chọn ít nhất 1 cuốn sách!");
-            
             const phone = document.getElementById('userPhone').value;
             document.getElementById('payNote').innerText = phone.slice(-4) + " MUA SACH HSK";
-            
             document.getElementById('formContent').classList.add('hidden');
             document.getElementById('paymentContent').classList.remove('hidden');
         }
