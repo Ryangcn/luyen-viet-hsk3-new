@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VỞ LUYỆN VIẾT HSK 1, 2, 3 - PHIÊN BẢN 3.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
         
@@ -81,7 +83,7 @@
                 Vở Luyện Viết <br>
                 <span class="text-primary text-blue-600">HSK Phiên Bản 3.0</span>
             </h2>
-            <p class="mt-6 text-slate-600 text-lg leading-relaxed">Nhấn vào bộ sách để trải nghiệm hiệu ứng hoặc chọn mua lẻ bên dưới.</p>
+            <p class="mt-6 text-slate-600 text-lg leading-relaxed">Nhấn vào bộ sách để trải nghiệm hiệu ứng hoặc cuộn xuống để xem thử và chọn mua.</p>
         </div>
         <div class="md:w-1/2 mt-8 md:mt-0 flex justify-center items-center w-full">
             <div id="bookStack" class="book-stack relative w-full max-w-[420px] h-[450px] flex items-center justify-center overflow-visible" onclick="toggleSpread()">
@@ -90,6 +92,52 @@
                 <img src="hsk2.jpg" class="img-hsk2 absolute w-3/5 rounded-lg shadow-xl rotate-6 translate-x-4 border border-white/20">
                 <img src="hsk1.jpg" class="img-hsk1 absolute w-3/5 rounded-lg shadow-2xl rotate-0 z-20 border border-white/20">
             </div>
+        </div>
+    </section>
+
+    <section id="demo-sach" class="py-16 bg-white flex flex-col items-center overflow-hidden border-b border-slate-100">
+        <div class="text-center mb-10 text-slate-800">
+            <h2 class="text-3xl md:text-4xl font-bold mb-3 uppercase tracking-tight">Trải Nghiệm Xem Thử</h2>
+            <p class="text-slate-600">Lật trang để xem chi tiết bên trong cuốn vở</p>
+        </div>
+
+        <div class="flex justify-center w-full px-4">
+            <div id="flipbook" class="shadow-2xl">
+                
+                <div class="page bg-white border border-gray-200 overflow-hidden flex flex-col items-center justify-center">
+                    <img src="trang1.jpg" alt="Trang 1" class="w-full h-full object-cover">
+                </div>
+                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner">
+                    <img src="trang2.jpg" alt="Trang 2" class="w-full h-full object-cover">
+                </div>
+                <div class="page bg-white overflow-hidden shadow-inner">
+                    <img src="trang3.jpg" alt="Trang 3" class="w-full h-full object-cover">
+                </div>
+                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner">
+                    <img src="trang4.jpg" alt="Trang 4" class="w-full h-full object-cover">
+                </div>
+                <div class="page bg-white overflow-hidden shadow-inner">
+                    <img src="trang5.jpg" alt="Trang 5" class="w-full h-full object-cover">
+                </div>
+                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner">
+                    <img src="trang6.jpg" alt="Trang 6" class="w-full h-full object-cover">
+                </div>
+                <div class="page bg-white overflow-hidden shadow-inner">
+                    <img src="trang7.jpg" alt="Trang 7" class="w-full h-full object-cover">
+                </div>
+                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner">
+                    <img src="trang8.jpg" alt="Trang 8" class="w-full h-full object-cover">
+                </div>
+                <div class="page bg-white overflow-hidden shadow-inner">
+                    <img src="trang9.jpg" alt="Trang 9" class="w-full h-full object-cover">
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="mt-10 flex gap-4">
+            <button id="btn-prev" class="px-6 py-2 bg-slate-200 text-slate-700 font-semibold rounded-full hover:bg-slate-300 transition">❮ Trang trước</button>
+            <button id="btn-next" class="px-6 py-2 bg-slate-200 text-slate-700 font-semibold rounded-full hover:bg-slate-300 transition">Trang sau ❯</button>
         </div>
     </section>
 
@@ -130,7 +178,6 @@
             <h2 class="text-3xl font-bold mb-16 uppercase tracking-tight text-slate-900">Ban biên soạn</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                
                 <div class="flex flex-col items-center">
                     <div class="relative mb-6">
                         <img src="lethutrang.jpg" alt="Ths. Lê Thu Trang" class="author-avatar w-44 h-44 rounded-full object-cover">
@@ -170,7 +217,6 @@
                         </p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -222,6 +268,30 @@
     </div>
 
     <script>
+        // --- 1. SCRIPT LẬT TRANG SÁCH ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const pageFlip = new St.PageFlip(document.getElementById('flipbook'), {
+                width: 400, // Chiều rộng cơ bản của 1 trang
+                height: 565, // Chiều cao cơ bản (Tỷ lệ cỡ giấy A4/B5)
+                size: "stretch",
+                minWidth: 300,
+                maxWidth: 500,
+                minHeight: 424,
+                maxHeight: 707,
+                maxShadowOpacity: 0.5,
+                showCover: true, // Trang 1 và 9 đóng vai trò bìa sách
+                mobileScrollSupport: false 
+            });
+
+            // Load HTML vào hiệu ứng
+            pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+            // Nút điều khiển
+            document.getElementById('btn-prev').addEventListener('click', () => { pageFlip.flipPrev(); });
+            document.getElementById('btn-next').addEventListener('click', () => { pageFlip.flipNext(); });
+        });
+
+        // --- 2. SCRIPT GIỎ HÀNG & GIAO DIỆN CHUNG ---
         window.addEventListener('scroll', function() {
             const body = document.body;
             if (window.scrollY > 80) {
