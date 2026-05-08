@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VỞ LUYỆN VIẾT TỪ VỰNG HSK - PHIÊN BẢN 3.0</title>
+    <title>VỞ LUYỆN VIẾT HSK 1 & 2 - PHIÊN BẢN 3.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
     
@@ -31,16 +31,20 @@
             backdrop-filter: blur(4px); 
         }
         
-        .book-stack img { transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; }
-        /* Hiệu ứng xòe cho 2 cuốn */
-        .is-spread .img-hsk2 { transform: translateX(60px) rotate(5deg) !important; z-index: 10; }
-        .is-spread .img-hsk1 { transform: translateX(-60px) rotate(-5deg) !important; z-index: 15; }
+        .book-stack img { 
+            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+            cursor: pointer; 
+            transform: rotate(0deg) translateX(0);
+        }
+
+        .is-spread .img-hsk2 { transform: translateX(90px) !important; z-index: 10; }
+        .is-spread .img-hsk1 { transform: translateX(-90px) !important; z-index: 15; }
         
         @media (max-width: 768px) {
             .book-stack { height: 320px !important; margin-top: 20px; }
             .book-stack img { width: 55% !important; }
-            .is-spread .img-hsk2 { transform: translateX(40px) rotate(5deg) !important; }
-            .is-spread .img-hsk1 { transform: translateX(-40px) rotate(-5deg) !important; }
+            .is-spread .img-hsk2 { transform: translateX(60px) !important; }
+            .is-spread .img-hsk1 { transform: translateX(-60px) !important; }
         }
 
         @keyframes shake {
@@ -81,15 +85,15 @@
             <span class="text-blue-600 font-bold tracking-widest uppercase text-sm">Sách mới 2026</span>
             <h2 class="text-4xl md:text-6xl font-extrabold mt-4 uppercase leading-[1.2] md:leading-[1.15] tracking-wide">
                 Vở Luyện Viết <br>
-                <span class="text-primary text-blue-600">HSK 1 & 2 (3.0)</span>
+                <span class="text-primary text-blue-600">HSK 1 & 2</span>
             </h2>
-            <p class="mt-6 text-slate-600 text-lg leading-relaxed">Nhấn vào bộ sách để trải nghiệm hiệu ứng hoặc cuộn xuống để xem thử và chọn mua.</p>
+            <p class="mt-6 text-slate-600 text-lg leading-relaxed">Nhấn vào bộ sách để dàn hàng xem chi tiết hoặc cuộn xuống để xem thử và chọn mua.</p>
         </div>
         <div class="md:w-1/2 mt-8 md:mt-0 flex justify-center items-center w-full">
             <div id="bookStack" class="book-stack relative w-full max-w-[420px] h-[450px] flex items-center justify-center overflow-visible" onclick="toggleSpread()">
                 <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-black/10 rounded-[100%] blur-xl"></div>
-                <img src="hsk2.jpg" class="img-hsk2 absolute w-3/5 rounded-lg shadow-xl rotate-6 translate-x-4 border border-white/20">
-                <img src="hsk1.jpg" class="img-hsk1 absolute w-3/5 rounded-lg shadow-2xl rotate-0 z-20 border border-white/20">
+                <img src="hsk2.jpg" class="img-hsk2 absolute w-3/5 rounded-lg shadow-xl border border-white/20">
+                <img src="hsk1.jpg" class="img-hsk1 absolute w-3/5 rounded-lg shadow-2xl border border-white/20">
             </div>
         </div>
     </section>
@@ -97,24 +101,23 @@
     <section id="demo-sach" class="py-16 bg-white flex flex-col items-center overflow-hidden border-b border-slate-100">
         <div class="text-center mb-10 text-slate-800">
             <h2 class="text-3xl md:text-4xl font-bold mb-3 uppercase tracking-tight">Trải Nghiệm Xem Thử</h2>
-            <p class="text-slate-600">Lật trang để xem chi tiết bên trong cuốn vở</p>
         </div>
         <div class="flex justify-center w-full px-4">
             <div id="flipbook" class="shadow-2xl">
-                <div class="page bg-white border border-gray-200 overflow-hidden flex flex-col items-center justify-center"><img src="trang1.jpg" class="w-full h-full object-cover"></div>
-                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner"><img src="trang2.jpg" class="w-full h-full object-cover"></div>
-                <div class="page bg-white overflow-hidden shadow-inner"><img src="trang3.jpg" class="w-full h-full object-cover"></div>
-                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner"><img src="trang4.jpg" class="w-full h-full object-cover"></div>
-                <div class="page bg-white overflow-hidden shadow-inner"><img src="trang5.jpg" class="w-full h-full object-cover"></div>
-                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner"><img src="trang6.jpg" class="w-full h-full object-cover"></div>
-                <div class="page bg-white overflow-hidden shadow-inner"><img src="trang7.jpg" class="w-full h-full object-cover"></div>
-                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner"><img src="trang8.jpg" class="w-full h-full object-cover"></div>
-                <div class="page bg-white overflow-hidden shadow-inner"><img src="trang9.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white border border-gray-200 overflow-hidden"><img src="trang1.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white border-l border-gray-200 overflow-hidden"><img src="trang2.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white overflow-hidden"><img src="trang3.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white border-l border-gray-200 overflow-hidden"><img src="trang4.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white overflow-hidden"><img src="trang5.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white border-l border-gray-200 overflow-hidden"><img src="trang6.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white overflow-hidden"><img src="trang7.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white border-l border-gray-200 overflow-hidden"><img src="trang8.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white overflow-hidden"><img src="trang9.jpg" class="w-full h-full object-cover"></div>
             </div>
         </div>
         <div class="mt-10 flex gap-4">
-            <button id="btn-prev" class="px-6 py-2 bg-slate-200 text-slate-700 font-semibold rounded-full hover:bg-slate-300 transition">❮ Trang trước</button>
-            <button id="btn-next" class="px-6 py-2 bg-slate-200 text-slate-700 font-semibold rounded-full hover:bg-slate-300 transition">Trang sau ❯</button>
+            <button id="btn-prev" class="px-6 py-2 bg-slate-200 text-slate-700 font-semibold rounded-full hover:bg-slate-300">❮ Trang trước</button>
+            <button id="btn-next" class="px-6 py-2 bg-slate-200 text-slate-700 font-semibold rounded-full hover:bg-slate-300">Trang sau ❯</button>
         </div>
     </section>
 
@@ -122,7 +125,7 @@
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-12 uppercase tracking-tight">Chọn sách vào giỏ</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-                <div class="book-card p-6 bg-white/50 backdrop-blur-sm border border-slate-100 rounded-2xl hover:shadow-xl transition">
+                <div class="book-card p-6 bg-white/50 border border-slate-100 rounded-2xl hover:shadow-xl transition">
                     <img src="hsk1.jpg" class="rounded-lg shadow-md mx-auto mb-4 w-44">
                     <h3 class="font-bold text-lg text-blue-800">HSK 1 (500 từ)</h3>
                     <div class="flex justify-between items-center mt-4 bg-white/80 p-2 rounded-lg">
@@ -130,12 +133,12 @@
                         <button onclick="addToCart('HSK 1', 100000)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700">+</button>
                     </div>
                 </div>
-                <div class="book-card p-6 bg-white/50 backdrop-blur-sm border border-slate-100 rounded-2xl hover:shadow-xl transition">
+                <div class="book-card p-6 bg-white/50 border border-slate-100 rounded-2xl hover:shadow-xl transition">
                     <img src="hsk2.jpg" class="rounded-lg shadow-md mx-auto mb-4 w-44">
                     <h3 class="font-bold text-lg text-blue-800">HSK 2 (1272 từ)</h3>
                     <div class="flex justify-between items-center mt-4 bg-white/80 p-2 rounded-lg">
                         <span class="font-bold text-red-600">139.000đ</span>
-                        <button onclick="addToCart('HSK 2', Chưa công bố)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700">+</button>
+                        <button onclick="addToCart('HSK 2', 139000)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700">+</button>
                     </div>
                 </div>
             </div>
@@ -146,21 +149,35 @@
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-16 uppercase tracking-tight text-slate-900">Ban biên soạn</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                
                 <div class="flex flex-col items-center">
-                    <img src="lethutrang.jpg" class="author-avatar w-44 h-44 rounded-full object-cover mb-6">
-                    <h3 class="text-xl font-bold text-blue-900">Ths. Lê Thu Trang</h3>
-                    <p class="text-blue-700 font-medium text-sm">Giảng viên Đại học Bách Khoa</p>
+                    <img src="lethutrang.jpg" class="author-avatar w-44 h-44 rounded-full object-cover mb-4">
+                    <h3 class="font-bold text-xl text-blue-900">Ths. Lê Thu Trang</h3>
+                    <p class="text-blue-700 font-semibold text-sm mb-2">Giảng viên Đại học Bách Khoa</p>
+                    <p class="text-slate-600 text-sm italic leading-relaxed">
+                        Chủ biên bộ vở luyện viết HSK 3.0 Pro<br>
+                        Hơn 10 năm kinh nghiệm giảng dạy Hán ngữ
+                    </p>
                 </div>
+
                 <div class="flex flex-col items-center">
-                    <img src="luuthanhtai.jpg" class="author-avatar w-44 h-44 rounded-full object-cover mb-6">
-                    <h3 class="text-xl font-bold text-blue-900">Ths. Lưu Thành Tài</h3>
-                    <p class="text-slate-600 mt-2 italic text-sm">Đồng chủ biên bộ vở HSK 3.0</p>
+                    <img src="luuthanhtai.jpg" class="author-avatar w-44 h-44 rounded-full object-cover mb-4">
+                    <h3 class="font-bold text-xl text-blue-900">Ths. Lưu Thành Tài</h3>
+                    <p class="text-blue-700 font-semibold text-sm mb-2">Đồng chủ biên bộ vở luyện viết HSK 3.0 Pro</p>
+                    <p class="text-slate-600 text-sm italic leading-relaxed">
+                        Hơn 10 năm kinh nghiệm giảng dạy Hán ngữ
+                    </p>
                 </div>
+
                 <div class="flex flex-col items-center">
-                    <img src="nguyenhuycuong.jpg" class="author-avatar w-44 h-44 rounded-full object-cover mb-6">
-                    <h3 class="text-xl font-bold text-blue-900">Nguyễn Huy Cương</h3>
-                    <p class="text-blue-700 font-medium text-sm">Đại học Sư phạm Thủ đô-Bắc Kinh</p>
+                    <img src="nguyenhuycuong.jpg" class="author-avatar w-44 h-44 rounded-full object-cover mb-4">
+                    <h3 class="font-bold text-xl text-blue-900">Nguyễn Huy Cương</h3>
+                    <p class="text-blue-700 font-semibold text-sm mb-2 leading-tight px-4">Chuyên ngành Tiếng Trung thương mại, ĐH Sư phạm Thủ đô-Bắc Kinh</p>
+                    <p class="text-slate-600 text-sm italic leading-relaxed">
+                        Đồng chủ biên bộ vở luyện viết HSK 3.0 Pro
+                    </p>
                 </div>
+
             </div>
         </div>
     </section>
@@ -173,29 +190,28 @@
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative m-4 overflow-y-auto max-h-[90vh]">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl">&times;</button>
             <div id="formContent">
-                <h3 class="text-xl font-bold mb-4 border-b pb-2">Giỏ hàng của bạn</h3>
-                <div id="cartSummary" class="space-y-3 mb-6 max-h-40 overflow-y-auto pr-2"></div>
+                <h3 class="text-xl font-bold mb-4 border-b pb-2">Giỏ hàng</h3>
+                <div id="cartSummary" class="space-y-3 mb-6"></div>
                 <div class="bg-slate-50 p-4 rounded-xl mb-6 space-y-3">
                     <div class="flex gap-2">
-                        <input type="text" id="voucherInput" placeholder="Nhập mã giảm giá" class="flex-1 border p-2 rounded-lg text-sm uppercase">
+                        <input type="text" id="voucherInput" placeholder="Mã giảm giá" class="flex-1 border p-2 rounded-lg text-sm">
                         <button onclick="applyVoucher()" class="bg-slate-800 text-white px-3 rounded-lg text-xs">Áp dụng</button>
                     </div>
-                    <p id="voucherMsg" class="text-xs"></p>
                     <div class="flex justify-between font-bold text-lg border-t pt-2">
-                        <span>Tổng tiền:</span>
+                        <span>Tổng:</span>
                         <span id="finalTotal" class="text-red-600">0đ</span>
                     </div>
                 </div>
                 <form id="orderForm" class="space-y-3">
-                    <input type="text" name="fullName" placeholder="Họ tên" required class="w-full border p-3 rounded-lg">
-                    <input type="tel" name="phone" id="userPhone" placeholder="Số điện thoại" required class="w-full border p-3 rounded-lg">
-                    <input type="text" name="address" placeholder="Địa chỉ giao hàng" required class="w-full border p-3 rounded-lg">
-                    <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-lg font-bold hover:bg-blue-700 transition">Thanh toán ngay</button>
+                    <input type="text" placeholder="Họ tên" required class="w-full border p-3 rounded-lg">
+                    <input type="tel" id="userPhone" placeholder="Số điện thoại" required class="w-full border p-3 rounded-lg">
+                    <input type="text" placeholder="Địa chỉ" required class="w-full border p-3 rounded-lg">
+                    <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-lg font-bold">Thanh toán ngay</button>
                 </form>
             </div>
             <div id="paymentContent" class="hidden text-center space-y-4">
-                <p class="font-bold text-blue-800">Quét mã QR để thanh toán</p>
-                <img src="pr-pay.jpg" class="mx-auto rounded-lg shadow-md border-2 border-slate-100" width="250">
+                <p class="font-bold text-blue-800">Quét mã QR thanh toán</p>
+                <img src="pr-pay.jpg" class="mx-auto rounded-lg shadow-md" width="250">
                 <div class="text-left bg-slate-50 p-4 rounded-lg text-sm">
                     <p><b>Số tiền:</b> <span id="payAmount" class="text-red-600 font-bold"></span></p>
                     <p><b>Nội dung:</b> <span id="payNote" class="font-mono text-blue-700"></span></p>
@@ -204,25 +220,23 @@
             </div>
             <div id="successContent" class="hidden text-center py-10 space-y-4">
                 <div class="text-5xl">🎉</div>
-                <h3 class="text-2xl font-bold text-green-600">Đặt hàng thành công!</h3>
-                <button onclick="closeModal()" class="text-blue-600 underline">Quay lại trang chủ</button>
+                <h3 class="text-2xl font-bold text-green-600">Thành công!</h3>
+                <button onclick="closeModal()" class="text-blue-600 underline">Quay lại</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Lật trang
         document.addEventListener('DOMContentLoaded', function() {
             const pageFlip = new St.PageFlip(document.getElementById('flipbook'), {
                 width: 400, height: 565, size: "stretch", minWidth: 300, maxWidth: 500, minHeight: 424, maxHeight: 707,
-                maxShadowOpacity: 0.5, showCover: true, mobileScrollSupport: false 
+                showCover: true, mobileScrollSupport: false 
             });
             pageFlip.loadFromHTML(document.querySelectorAll('.page'));
             document.getElementById('btn-prev').addEventListener('click', () => { pageFlip.flipPrev(); });
             document.getElementById('btn-next').addEventListener('click', () => { pageFlip.flipNext(); });
         });
 
-        // Giỏ hàng
         let cart = [];
         let discountPercent = 0;
         function toggleSpread() { document.getElementById('bookStack').classList.toggle('is-spread'); }
@@ -230,8 +244,8 @@
             cart.push({name, price});
             updateCart();
             const btn = document.getElementById('floatingCart');
-            btn.classList.remove('scale-0');
-            btn.classList.add('scale-100', 'cart-bump');
+            btn.classList.replace('scale-0', 'scale-100');
+            btn.classList.add('cart-bump');
             setTimeout(() => btn.classList.remove('cart-bump'), 300);
         }
         function updateCart() {
@@ -241,31 +255,19 @@
             badge.innerText = cart.length;
             summary.innerHTML = cart.map((item, index) => {
                 subtotal += item.price;
-                return `<div class="flex justify-between text-sm italic">
-                            <span>${item.name}</span>
-                            <div class="flex gap-4">
-                                <span>${item.price.toLocaleString()}đ</span>
-                                <button onclick="removeItem(${index})" class="text-red-400">✕</button>
-                            </div>
-                        </div>`;
+                return `<div class="flex justify-between text-sm"><span>${item.name}</span><b>${item.price.toLocaleString()}đ</b></div>`;
             }).join('');
             if(cart.length === 0) {
-                summary.innerHTML = "<p class='text-slate-400 text-center py-4'>Giỏ hàng trống</p>";
+                summary.innerHTML = "<p class='text-slate-400 text-center'>Trống</p>";
                 document.getElementById('floatingCart').classList.replace('scale-100', 'scale-0');
             }
             const final = subtotal * (1 - discountPercent / 100);
             document.getElementById('finalTotal').innerText = final.toLocaleString() + 'đ';
             document.getElementById('payAmount').innerText = final.toLocaleString() + 'đ';
         }
-        function removeItem(index) { cart.splice(index, 1); updateCart(); }
         function applyVoucher() {
             const code = document.getElementById('voucherInput').value.trim().toLowerCase();
-            const msg = document.getElementById('voucherMsg');
-            if(code === 'ryanchinese') discountPercent = 5;
-            else if(code === 'ryanchinese86') discountPercent = 10;
-            else discountPercent = 0;
-            msg.innerText = discountPercent > 0 ? `✓ Giảm ${discountPercent}%` : "✕ Mã không đúng";
-            msg.className = discountPercent > 0 ? "text-xs text-green-600" : "text-xs text-red-600";
+            discountPercent = (code === 'ryanchinese') ? 10 : 0;
             updateCart();
         }
         function openModal() { document.getElementById('orderModal').style.display = 'flex'; updateCart(); }
@@ -277,9 +279,8 @@
         }
         document.getElementById('orderForm').onsubmit = function(e) {
             e.preventDefault();
-            if(cart.length === 0) return alert("Vui lòng chọn ít nhất 1 cuốn sách!");
             const phone = document.getElementById('userPhone').value;
-            document.getElementById('payNote').innerText = phone.slice(-4) + " MUA SACH HSK";
+            document.getElementById('payNote').innerText = phone.slice(-4) + " MUA SACH";
             document.getElementById('formContent').classList.add('hidden');
             document.getElementById('paymentContent').classList.remove('hidden');
         }
