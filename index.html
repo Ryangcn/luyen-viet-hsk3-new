@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VỞ LUYỆN VIẾT HSK 1, 2, 3 - PHIÊN BẢN 3.0</title>
+    <title>VỞ LUYỆN VIẾT HSK 1 & 2 - PHIÊN BẢN 3.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
     
@@ -32,15 +32,15 @@
         }
         
         .book-stack img { transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); cursor: pointer; }
-        .is-spread .img-hsk3 { transform: translateX(110px) rotate(0deg) !important; z-index: 5; }
-        .is-spread .img-hsk2 { transform: translateX(0px) rotate(0deg) !important; z-index: 10; }
-        .is-spread .img-hsk1 { transform: translateX(-110px) rotate(0deg) !important; z-index: 15; }
+        /* Hiệu ứng xòe cho 2 cuốn */
+        .is-spread .img-hsk2 { transform: translateX(60px) rotate(5deg) !important; z-index: 10; }
+        .is-spread .img-hsk1 { transform: translateX(-60px) rotate(-5deg) !important; z-index: 15; }
         
         @media (max-width: 768px) {
             .book-stack { height: 320px !important; margin-top: 20px; }
             .book-stack img { width: 55% !important; }
-            .is-spread .img-hsk3 { transform: translateX(70px) rotate(0deg) !important; }
-            .is-spread .img-hsk1 { transform: translateX(-70px) rotate(0deg) !important; }
+            .is-spread .img-hsk2 { transform: translateX(40px) rotate(5deg) !important; }
+            .is-spread .img-hsk1 { transform: translateX(-40px) rotate(-5deg) !important; }
         }
 
         @keyframes shake {
@@ -81,14 +81,13 @@
             <span class="text-blue-600 font-bold tracking-widest uppercase text-sm">Sách mới 2026</span>
             <h2 class="text-4xl md:text-6xl font-extrabold mt-4 uppercase leading-[1.2] md:leading-[1.15] tracking-wide">
                 Vở Luyện Viết <br>
-                <span class="text-primary text-blue-600">HSK Phiên Bản 3.0</span>
+                <span class="text-primary text-blue-600">HSK 1 & 2 (3.0)</span>
             </h2>
             <p class="mt-6 text-slate-600 text-lg leading-relaxed">Nhấn vào bộ sách để trải nghiệm hiệu ứng hoặc cuộn xuống để xem thử và chọn mua.</p>
         </div>
         <div class="md:w-1/2 mt-8 md:mt-0 flex justify-center items-center w-full">
             <div id="bookStack" class="book-stack relative w-full max-w-[420px] h-[450px] flex items-center justify-center overflow-visible" onclick="toggleSpread()">
                 <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-black/10 rounded-[100%] blur-xl"></div>
-                <img src="hsk3.jpg" class="img-hsk3 absolute w-3/5 rounded-lg shadow-xl -rotate-12 -translate-x-12 border border-white/20">
                 <img src="hsk2.jpg" class="img-hsk2 absolute w-3/5 rounded-lg shadow-xl rotate-6 translate-x-4 border border-white/20">
                 <img src="hsk1.jpg" class="img-hsk1 absolute w-3/5 rounded-lg shadow-2xl rotate-0 z-20 border border-white/20">
             </div>
@@ -100,41 +99,19 @@
             <h2 class="text-3xl md:text-4xl font-bold mb-3 uppercase tracking-tight">Trải Nghiệm Xem Thử</h2>
             <p class="text-slate-600">Lật trang để xem chi tiết bên trong cuốn vở</p>
         </div>
-
         <div class="flex justify-center w-full px-4">
             <div id="flipbook" class="shadow-2xl">
-                
-                <div class="page bg-white border border-gray-200 overflow-hidden flex flex-col items-center justify-center">
-                    <img src="trang1.jpg" alt="Trang 1" class="w-full h-full object-cover">
-                </div>
-                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner">
-                    <img src="trang2.jpg" alt="Trang 2" class="w-full h-full object-cover">
-                </div>
-                <div class="page bg-white overflow-hidden shadow-inner">
-                    <img src="trang3.jpg" alt="Trang 3" class="w-full h-full object-cover">
-                </div>
-                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner">
-                    <img src="trang4.jpg" alt="Trang 4" class="w-full h-full object-cover">
-                </div>
-                <div class="page bg-white overflow-hidden shadow-inner">
-                    <img src="trang5.jpg" alt="Trang 5" class="w-full h-full object-cover">
-                </div>
-                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner">
-                    <img src="trang6.jpg" alt="Trang 6" class="w-full h-full object-cover">
-                </div>
-                <div class="page bg-white overflow-hidden shadow-inner">
-                    <img src="trang7.jpg" alt="Trang 7" class="w-full h-full object-cover">
-                </div>
-                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner">
-                    <img src="trang8.jpg" alt="Trang 8" class="w-full h-full object-cover">
-                </div>
-                <div class="page bg-white overflow-hidden shadow-inner">
-                    <img src="trang9.jpg" alt="Trang 9" class="w-full h-full object-cover">
-                </div>
-
+                <div class="page bg-white border border-gray-200 overflow-hidden flex flex-col items-center justify-center"><img src="trang1.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner"><img src="trang2.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white overflow-hidden shadow-inner"><img src="trang3.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner"><img src="trang4.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white overflow-hidden shadow-inner"><img src="trang5.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner"><img src="trang6.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white overflow-hidden shadow-inner"><img src="trang7.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white border-l border-gray-200 overflow-hidden shadow-inner"><img src="trang8.jpg" class="w-full h-full object-cover"></div>
+                <div class="page bg-white overflow-hidden shadow-inner"><img src="trang9.jpg" class="w-full h-full object-cover"></div>
             </div>
         </div>
-        
         <div class="mt-10 flex gap-4">
             <button id="btn-prev" class="px-6 py-2 bg-slate-200 text-slate-700 font-semibold rounded-full hover:bg-slate-300 transition">❮ Trang trước</button>
             <button id="btn-next" class="px-6 py-2 bg-slate-200 text-slate-700 font-semibold rounded-full hover:bg-slate-300 transition">Trang sau ❯</button>
@@ -144,7 +121,7 @@
     <section id="trien-lam" class="py-20">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-12 uppercase tracking-tight">Chọn sách vào giỏ</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
                 <div class="book-card p-6 bg-white/50 backdrop-blur-sm border border-slate-100 rounded-2xl hover:shadow-xl transition">
                     <img src="hsk1.jpg" class="rounded-lg shadow-md mx-auto mb-4 w-44">
                     <h3 class="font-bold text-lg text-blue-800">HSK 1 (500 từ)</h3>
@@ -161,14 +138,6 @@
                         <button onclick="addToCart('HSK 2', 139000)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700">+</button>
                     </div>
                 </div>
-                <div class="book-card p-6 bg-white/50 backdrop-blur-sm border border-slate-100 rounded-2xl hover:shadow-xl transition">
-                    <img src="hsk3.jpg" class="rounded-lg shadow-md mx-auto mb-4 w-44">
-                    <h3 class="font-bold text-lg text-blue-800">HSK 3 (2245 từ)</h3>
-                    <div class="flex justify-between items-center mt-4 bg-white/80 p-2 rounded-lg">
-                        <span class="font-bold text-red-600">168.000đ</span>
-                        <button onclick="addToCart('HSK 3', 168000)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700">+</button>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -176,46 +145,21 @@
     <section id="tac-gia" class="py-24 border-t border-slate-100">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-16 uppercase tracking-tight text-slate-900">Ban biên soạn</h2>
-            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <div class="flex flex-col items-center">
-                    <div class="relative mb-6">
-                        <img src="lethutrang.jpg" alt="Ths. Lê Thu Trang" class="author-avatar w-44 h-44 rounded-full object-cover">
-                    </div>
-                    <div class="max-w-sm">
-                        <h3 class="text-xl font-bold text-blue-900">Ths. Lê Thu Trang</h3>
-                        <p class="text-blue-700 font-medium text-sm">Giảng viên Đại học Bách Khoa</p>
-                        <p class="text-slate-600 mt-4 leading-relaxed text-sm italic">
-                            Chủ biên bộ vở luyện viết HSK 3.0 Pro<br>
-                            Hơn 10 năm kinh nghiệm giảng dạy Hán ngữ
-                        </p>
-                    </div>
+                    <img src="lethutrang.jpg" class="author-avatar w-44 h-44 rounded-full object-cover mb-6">
+                    <h3 class="text-xl font-bold text-blue-900">Ths. Lê Thu Trang</h3>
+                    <p class="text-blue-700 font-medium text-sm">Giảng viên Đại học Bách Khoa</p>
                 </div>
-
                 <div class="flex flex-col items-center">
-                    <div class="relative mb-6">
-                        <img src="luuthanhtai.jpg" alt="Ths. Lưu Thành Tài" class="author-avatar w-44 h-44 rounded-full object-cover">
-                    </div>
-                    <div class="max-w-sm">
-                        <h3 class="text-xl font-bold text-blue-900">Ths. Lưu Thành Tài</h3>
-                        <p class="text-slate-600 mt-2 leading-relaxed text-sm italic">
-                            Đồng chủ biên bộ vở luyện viết HSK 3.0 Pro<br>
-                            Hơn 10 năm kinh nghiệm giảng dạy Hán ngữ
-                        </p>
-                    </div>
+                    <img src="luuthanhtai.jpg" class="author-avatar w-44 h-44 rounded-full object-cover mb-6">
+                    <h3 class="text-xl font-bold text-blue-900">Ths. Lưu Thành Tài</h3>
+                    <p class="text-slate-600 mt-2 italic text-sm">Đồng chủ biên bộ vở HSK 3.0</p>
                 </div>
-
                 <div class="flex flex-col items-center">
-                    <div class="relative mb-6">
-                        <img src="nguyenhuycuong.jpg" alt="Nguyễn Huy Cương" class="author-avatar w-44 h-44 rounded-full object-cover">
-                    </div>
-                    <div class="max-w-sm">
-                        <h3 class="text-xl font-bold text-blue-900">Nguyễn Huy Cương</h3>
-                        <p class="text-blue-700 font-medium text-sm">Chuyên ngành Tiếng Trung thương mại, Đại học Sư phạm Thủ đô-Bắc Kinh</p>
-                        <p class="text-slate-600 mt-4 leading-relaxed text-sm italic">
-                            Đồng chủ biên bộ vở luyện viết HSK 3.0 Pro
-                        </p>
-                    </div>
+                    <img src="nguyenhuycuong.jpg" class="author-avatar w-44 h-44 rounded-full object-cover mb-6">
+                    <h3 class="text-xl font-bold text-blue-900">Nguyễn Huy Cương</h3>
+                    <p class="text-blue-700 font-medium text-sm">Đại học Sư phạm Thủ đô-Bắc Kinh</p>
                 </div>
             </div>
         </div>
@@ -228,11 +172,9 @@
     <div id="orderModal" class="modal hidden items-center justify-center">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative m-4 overflow-y-auto max-h-[90vh]">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-2xl">&times;</button>
-            
             <div id="formContent">
                 <h3 class="text-xl font-bold mb-4 border-b pb-2">Giỏ hàng của bạn</h3>
                 <div id="cartSummary" class="space-y-3 mb-6 max-h-40 overflow-y-auto pr-2"></div>
-
                 <div class="bg-slate-50 p-4 rounded-xl mb-6 space-y-3">
                     <div class="flex gap-2">
                         <input type="text" id="voucherInput" placeholder="Nhập mã giảm giá" class="flex-1 border p-2 rounded-lg text-sm uppercase">
@@ -244,7 +186,6 @@
                         <span id="finalTotal" class="text-red-600">0đ</span>
                     </div>
                 </div>
-
                 <form id="orderForm" class="space-y-3">
                     <input type="text" name="fullName" placeholder="Họ tên" required class="w-full border p-3 rounded-lg">
                     <input type="tel" name="phone" id="userPhone" placeholder="Số điện thoại" required class="w-full border p-3 rounded-lg">
@@ -252,17 +193,15 @@
                     <button type="submit" class="w-full bg-blue-600 text-white py-4 rounded-lg font-bold hover:bg-blue-700 transition">Thanh toán ngay</button>
                 </form>
             </div>
-
             <div id="paymentContent" class="hidden text-center space-y-4">
-                <p class="font-bold text-blue-800">Quét mã QR để hoàn tất thanh toán</p>
+                <p class="font-bold text-blue-800">Quét mã QR để thanh toán</p>
                 <img src="pr-pay.jpg" class="mx-auto rounded-lg shadow-md border-2 border-slate-100" width="250">
                 <div class="text-left bg-slate-50 p-4 rounded-lg text-sm">
                     <p><b>Số tiền:</b> <span id="payAmount" class="text-red-600 font-bold"></span></p>
                     <p><b>Nội dung:</b> <span id="payNote" class="font-mono text-blue-700"></span></p>
                 </div>
-                <button onclick="showSuccess()" class="w-full bg-green-600 text-white py-4 rounded-lg font-bold hover:bg-green-700">Xác nhận đã chuyển tiền</button>
+                <button onclick="showSuccess()" class="w-full bg-green-600 text-white py-4 rounded-lg font-bold">Xác nhận đã chuyển tiền</button>
             </div>
-
             <div id="successContent" class="hidden text-center py-10 space-y-4">
                 <div class="text-5xl">🎉</div>
                 <h3 class="text-2xl font-bold text-green-600">Đặt hàng thành công!</h3>
@@ -272,44 +211,21 @@
     </div>
 
     <script>
-        // --- 1. SCRIPT LẬT TRANG SÁCH ---
+        // Lật trang
         document.addEventListener('DOMContentLoaded', function() {
             const pageFlip = new St.PageFlip(document.getElementById('flipbook'), {
-                width: 400, // Chiều rộng cơ bản của 1 trang
-                height: 565, // Chiều cao cơ bản (Tỷ lệ cỡ giấy A4/B5)
-                size: "stretch",
-                minWidth: 300,
-                maxWidth: 500,
-                minHeight: 424,
-                maxHeight: 707,
-                maxShadowOpacity: 0.5,
-                showCover: true, // Trang 1 và 9 đóng vai trò bìa sách
-                mobileScrollSupport: false 
+                width: 400, height: 565, size: "stretch", minWidth: 300, maxWidth: 500, minHeight: 424, maxHeight: 707,
+                maxShadowOpacity: 0.5, showCover: true, mobileScrollSupport: false 
             });
-
-            // Load HTML vào hiệu ứng
             pageFlip.loadFromHTML(document.querySelectorAll('.page'));
-
-            // Nút điều khiển
             document.getElementById('btn-prev').addEventListener('click', () => { pageFlip.flipPrev(); });
             document.getElementById('btn-next').addEventListener('click', () => { pageFlip.flipNext(); });
         });
 
-        // --- 2. SCRIPT GIỎ HÀNG & GIAO DIỆN CHUNG ---
-        window.addEventListener('scroll', function() {
-            const body = document.body;
-            if (window.scrollY > 80) {
-                body.style.backgroundColor = "rgba(0, 51, 204, 0.07)";
-            } else {
-                body.style.backgroundColor = "#f8fafc";
-            }
-        });
-
+        // Giỏ hàng
         let cart = [];
         let discountPercent = 0;
-
         function toggleSpread() { document.getElementById('bookStack').classList.toggle('is-spread'); }
-
         function addToCart(name, price) {
             cart.push({name, price});
             updateCart();
@@ -318,7 +234,6 @@
             btn.classList.add('scale-100', 'cart-bump');
             setTimeout(() => btn.classList.remove('cart-bump'), 300);
         }
-
         function updateCart() {
             const summary = document.getElementById('cartSummary');
             const badge = document.getElementById('cartBadge');
@@ -336,40 +251,30 @@
             }).join('');
             if(cart.length === 0) {
                 summary.innerHTML = "<p class='text-slate-400 text-center py-4'>Giỏ hàng trống</p>";
-                document.getElementById('floatingCart').classList.remove('scale-100');
-                document.getElementById('floatingCart').classList.add('scale-0');
+                document.getElementById('floatingCart').classList.replace('scale-100', 'scale-0');
             }
             const final = subtotal * (1 - discountPercent / 100);
             document.getElementById('finalTotal').innerText = final.toLocaleString() + 'đ';
             document.getElementById('payAmount').innerText = final.toLocaleString() + 'đ';
         }
-
-        function removeItem(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
-
+        function removeItem(index) { cart.splice(index, 1); updateCart(); }
         function applyVoucher() {
             const code = document.getElementById('voucherInput').value.trim().toLowerCase();
             const msg = document.getElementById('voucherMsg');
             if(code === 'ryanchinese') discountPercent = 5;
             else if(code === 'ryanchinese86') discountPercent = 10;
-            else if(code === 'ryansuperhsk') discountPercent = 20;
             else discountPercent = 0;
             msg.innerText = discountPercent > 0 ? `✓ Giảm ${discountPercent}%` : "✕ Mã không đúng";
             msg.className = discountPercent > 0 ? "text-xs text-green-600" : "text-xs text-red-600";
             updateCart();
         }
-
-        const modal = document.getElementById('orderModal');
-        function openModal() { modal.style.display = 'flex'; updateCart(); }
-        function closeModal() { modal.style.display = 'none'; resetModal(); }
+        function openModal() { document.getElementById('orderModal').style.display = 'flex'; updateCart(); }
+        function closeModal() { document.getElementById('orderModal').style.display = 'none'; resetModal(); }
         function resetModal() {
             document.getElementById('formContent').classList.remove('hidden');
             document.getElementById('paymentContent').classList.add('hidden');
             document.getElementById('successContent').classList.add('hidden');
         }
-
         document.getElementById('orderForm').onsubmit = function(e) {
             e.preventDefault();
             if(cart.length === 0) return alert("Vui lòng chọn ít nhất 1 cuốn sách!");
@@ -378,12 +283,10 @@
             document.getElementById('formContent').classList.add('hidden');
             document.getElementById('paymentContent').classList.remove('hidden');
         }
-
         function showSuccess() {
             document.getElementById('paymentContent').classList.add('hidden');
             document.getElementById('successContent').classList.remove('hidden');
-            cart = []; 
-            updateCart();
+            cart = []; updateCart();
         }
     </script>
 </body>
