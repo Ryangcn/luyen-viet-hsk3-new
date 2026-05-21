@@ -265,22 +265,20 @@
         // --- 1. SCRIPT LẬT TRANG SÁCH ---
         document.addEventListener('DOMContentLoaded', function() {
             const pageFlip = new St.PageFlip(document.getElementById('flipbook'), {
-                width: 400, // Chiều rộng cơ bản của 1 trang
-                height: 565, // Chiều cao cơ bản (Tỷ lệ cỡ giấy A4/B5)
+                width: 400, 
+                height: 565, 
                 size: "stretch",
                 minWidth: 300,
                 maxWidth: 500,
                 minHeight: 424,
                 maxHeight: 707,
                 maxShadowOpacity: 0.5,
-                showCover: true, // Trang 1 và 9 đóng vai trò bìa sách
+                showCover: true, 
                 mobileScrollSupport: false 
             });
 
-            // Load HTML vào hiệu ứng
             pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-            // Nút điều khiển
             document.getElementById('btn-prev').addEventListener('click', () => { pageFlip.flipPrev(); });
             document.getElementById('btn-next').addEventListener('click', () => { pageFlip.flipNext(); });
         });
@@ -360,14 +358,12 @@
             document.getElementById('successContent').classList.add('hidden');
         }
 
-        // Đã cập nhật Script URL vào đây
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyI8pQQwmNuc-DbhG0igQte-JP0RdQWIpoiji4fQGaHZwW4dvknuXYyx36ycpOQ9g6m/exec";
 
         document.getElementById('orderForm').onsubmit = async function(e) {
             e.preventDefault();
             if(cart.length === 0) return alert("Vui lòng chọn ít nhất 1 cuốn sách!");
             
-            // Đổi trạng thái nút bấm
             const submitBtn = e.target.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerText;
             submitBtn.innerText = "Đang lưu đơn hàng...";
@@ -376,8 +372,9 @@
             const formData = new FormData(e.target);
             const phone = formData.get('phone');
             
-            // Xử lý thông tin giỏ hàng
-            const cartDetails = cart.map(item => `${item.name} (${item.price.toLocaleString()}đ)`).join(', ');
+            // Xử lý thông tin giỏ hàng: CHỈ LẤY TÊN SẢN PHẨM, KHÔNG LẤY GIÁ
+            const cartDetails = cart.map(item => item.name).join(', ');
+            
             let subtotal = 0;
             cart.forEach(item => subtotal += item.price);
             const final = subtotal * (1 - discountPercent / 100);
