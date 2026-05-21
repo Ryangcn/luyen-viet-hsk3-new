@@ -103,7 +103,6 @@
 
         <div class="flex justify-center w-full px-4">
             <div id="flipbook" class="shadow-2xl">
-                
                 <div class="page bg-white border border-gray-200 overflow-hidden flex flex-col items-center justify-center">
                     <img src="trang1.jpg" alt="Trang 1" class="w-full h-full object-cover">
                 </div>
@@ -131,7 +130,6 @@
                 <div class="page bg-white overflow-hidden shadow-inner">
                     <img src="trang9.jpg" alt="Trang 9" class="w-full h-full object-cover">
                 </div>
-
             </div>
         </div>
         
@@ -157,7 +155,7 @@
                     <img src="hsk2.jpg" class="rounded-lg shadow-md mx-auto mb-4 w-44">
                     <h3 class="font-bold text-lg text-blue-800">HSK 2 (1272 từ)</h3>
                     <div class="flex justify-between items-center mt-4 bg-white/80 p-2 rounded-lg">
-                        <span class="font-bold text-red-600"></span>
+                        <span class="font-bold text-red-600">139.000đ</span>
                         <button onclick="addToCart('HSK 2', 139000)" class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-700">+</button>
                     </div>
                 </div>
@@ -362,13 +360,67 @@
             document.getElementById('successContent').classList.add('hidden');
         }
 
-        document.getElementById('orderForm').onsubmit = function(e) {
+        // Đã cập nhật Script URL vào đây
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyI8pQQwmNuc-DbhG0igQte-JP0RdQWIpoiji4fQGaHZwW4dvknuXYyx36ycpOQ9g6m/exec";
+
+        document.getElementById('orderForm').onsubmit = async function(e) {
             e.preventDefault();
             if(cart.length === 0) return alert("Vui lòng chọn ít nhất 1 cuốn sách!");
-            const phone = document.getElementById('userPhone').value;
-            document.getElementById('payNote').innerText = phone.slice(-4) + " MUA SACH HSK";
-            document.getElementById('formContent').classList.add('hidden');
-            document.getElementById('paymentContent').classList.remove('hidden');
+            
+            // Đổi trạng thái nút bấm
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = "Đang lưu đơn hàng...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(e.target);
+            const phone = formData.get('phone');
+            
+            // Xử lý thông tin giỏ hàng
+            const cartDetails = cart.map(item => `${item.name} (${item.price.toLocaleString()}đ)`).join(', ');
+            let subtotal = 0;
+            cart.forEach(item => subtotal += item.price);
+            const final = subtotal * (1 - discountPercent / 100);
+            
+            const payNote = phone.slice(-4) + " MUA SACH HSK";
+            document.getElementById('payNote').innerText = payNote;
+
+            const orderData = {
+                fullName: formData.get('fullName'),
+                phone: phone,
+                address: formData.get('address'),
+                cartDetails: cartDetails,
+                totalAmount: final.toLocaleString() + 'đ',
+                payNote: payNote
+            };
+
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'text/plain', 
+                    },
+                    body: JSON.stringify(orderData)
+                });
+
+                const result = await response.json();
+                
+                if (result.result === 'success') {
+                    document.getElementById('formContent').classList.add('hidden');
+                    document.getElementById('paymentContent').classList.remove('hidden');
+                } else {
+                    alert("Lỗi máy chủ Google: " + result.error);
+                }
+            } catch (error) {
+                console.error("Lỗi:", error);
+                alert("Hệ thống lưu đơn tự động đang bận. Bạn hãy cứ quét mã QR thanh toán bình thường, chúng tôi sẽ liên hệ xác nhận thủ công qua SĐT!");
+                document.getElementById('formContent').classList.add('hidden');
+                document.getElementById('paymentContent').classList.remove('hidden');
+            } finally {
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            }
         }
 
         function showSuccess() {
