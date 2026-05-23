@@ -145,21 +145,17 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <!-- Menu con ẩn, hiện ra khi hover -->
                     <div class="absolute left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <div class="py-2">
-                            <!-- Link 1 -->
                             <a href="#tac-gia" class="block px-4 py-3 text-sm text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition">
                                 Thông tin ban biên soạn
                             </a>
-                            <!-- Link 2 -->
                             <a href="#" class="block px-4 py-3 text-sm text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition">
                                 Thông tin chung sản phẩm
                             </a>
                         </div>
                     </div>
                 </div>
-                <!-- Kết thúc Dropdown Giới thiệu -->
 
                 <!-- Dropdown HSK 3.0 -->
                 <div class="relative group">
@@ -169,14 +165,17 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <!-- Menu con ẩn, hiện ra khi hover -->
                     <div class="absolute left-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <div class="py-2">
-                            <!-- NÚT GỌI MODAL AUDIO -->
+                            <!-- NÚT GỌI MODAL AUDIO 1 -->
                             <a href="#" onclick="openAudioModal(); return false;" class="block px-4 py-3 text-sm text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition">
                                 File nghe HSK 1
                             </a>
-                            <a href="#" target="_blank" class="block px-4 py-3 text-sm text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition">
+                            <!-- NÚT GỌI MODAL AUDIO 2 -->
+                            <a href="#" onclick="openAudioModal2(); return false;" class="block px-4 py-3 text-sm text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition">
+                                File nghe HSK 2
+                            </a>
+                            <a href="#" target="_blank" class="block px-4 py-3 text-sm text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition border-t border-slate-100">
                                 PDF giáo trình HSK 3.0
                             </a>
                             <a href="#tai-lieu-hsk3" class="block px-4 py-3 text-sm text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition border-t border-slate-100">
@@ -185,7 +184,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Kết thúc Dropdown HSK 3.0 -->
 
                 <a href="#" class="text-slate-700 hover:text-blue-600 font-semibold transition">Flashcards</a>
             </nav>
@@ -199,7 +197,7 @@
             </div>
         </div>
 
-        <!-- Menu Mobile (Ẩn mặc định, xổ xuống khi bấm nút) -->
+        <!-- Menu Mobile (Ẩn mặc định) -->
         <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full left-0 shadow-lg">
             <nav class="flex flex-col px-6 py-4 space-y-4">
                 
@@ -211,7 +209,6 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <!-- Menu con trên điện thoại -->
                     <div id="mobileIntroSubmenu" class="hidden pl-4 mt-3 space-y-3 border-l-2 border-slate-100">
                         <a href="#tac-gia" class="block text-slate-600 hover:text-blue-600 text-sm transition mobile-link">Thông tin ban biên soạn</a>
                         <a href="#" class="block text-slate-600 hover:text-blue-600 text-sm transition mobile-link">Thông tin chung sản phẩm</a>
@@ -226,11 +223,10 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <!-- Menu con trên điện thoại -->
                     <div id="mobileHskSubmenu" class="hidden pl-4 mt-3 space-y-3 border-l-2 border-slate-100">
-                        <!-- NÚT GỌI MODAL AUDIO MOBILE -->
                         <a href="#" onclick="openAudioModal(); return false;" class="block text-slate-600 hover:text-blue-600 text-sm transition mobile-link">File nghe HSK 1</a>
-                        <a href="#" target="_blank" class="block text-slate-600 hover:text-blue-600 text-sm transition mobile-link">PDF giáo trình HSK 3.0</a>
+                        <a href="#" onclick="openAudioModal2(); return false;" class="block text-slate-600 hover:text-blue-600 text-sm transition mobile-link">File nghe HSK 2</a>
+                        <a href="#" target="_blank" class="block text-slate-600 hover:text-blue-600 text-sm transition mobile-link border-t border-slate-50 pt-2">PDF giáo trình HSK 3.0</a>
                         <a href="#tai-lieu-hsk3" class="block text-slate-600 hover:text-blue-600 text-sm transition mobile-link">Xem tất cả tài liệu</a>
                     </div>
                 </div>
@@ -336,7 +332,7 @@
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-                <!-- NÚT GỌI MODAL AUDIO TỪ KHUNG ẢNH -->
+                <!-- NÚT GỌI MODAL AUDIO 1 TỪ KHUNG ẢNH -->
                 <button onclick="openAudioModal()" class="group flex flex-col items-center focus:outline-none w-full">
                     <div class="w-full aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 border border-slate-200 flex items-center justify-center relative">
                         <div class="absolute inset-0 bg-blue-900/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
@@ -345,28 +341,37 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                         </div>
-                        <img src="https://placehold.co/400x533/e2e8f0/475569?text=AudionHSK+1" alt="File Nghe HSK 1" class="w-full h-full object-cover">
+                        <img src="biaau1.jpg" alt="File Nghe HSK 1" class="w-full h-full object-cover">
                     </div>
                     <h3 class="mt-4 font-bold text-blue-900 text-center group-hover:text-blue-600 transition-colors">File Nghe HSK 1</h3>
                 </button>
 
-                <a href="#" target="_blank" class="group flex flex-col items-center">
-                    <div class="w-full aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 border border-slate-200 flex items-center justify-center">
-                        <img src="https://placehold.co/400x533/e2e8f0/475569?text=AudionHSK+2" alt="File Nghe HSK 2" class="w-full h-full object-cover">
+                <!-- NÚT GỌI MODAL AUDIO 2 TỪ KHUNG ẢNH -->
+                <button onclick="openAudioModal2()" class="group flex flex-col items-center focus:outline-none w-full">
+                    <div class="w-full aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 border border-slate-200 flex items-center justify-center relative">
+                        <div class="absolute inset-0 bg-blue-900/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-700 bg-white rounded-full p-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <img src="biaau2.jpg" alt="File Nghe HSK 2" class="w-full h-full object-cover">
                     </div>
                     <h3 class="mt-4 font-bold text-blue-900 text-center group-hover:text-blue-600 transition-colors">File Nghe HSK 2</h3>
-                </a>
+                </button>
 
-                <a href="#" target="_blank" class="group flex flex-col items-center">
-                    <div class="w-full aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 border border-slate-200 flex items-center justify-center">
-                        <img src="https://placehold.co/400x533/e2e8f0/475569?text=PDFnTu+Vung" alt="File PDF Từ Vựng" class="w-full h-full object-cover">
+                <!-- FILE PDF TỪ VỰNG -->
+                <a href="#" target="_blank" class="group flex flex-col items-center w-full">
+                    <div class="w-full aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 border border-slate-200 flex items-center justify-center relative">
+                        <img src="newword.jpg" alt="File PDF Từ Vựng" class="w-full h-full object-cover">
                     </div>
                     <h3 class="mt-4 font-bold text-blue-900 text-center group-hover:text-blue-600 transition-colors">Tổng hợp Từ vựng PDF</h3>
                 </a>
 
-                <a href="#" target="_blank" class="group flex flex-col items-center">
-                    <div class="w-full aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 border border-slate-200 flex items-center justify-center">
-                        <img src="https://placehold.co/400x533/e2e8f0/475569?text=De+ThinMau" alt="Đề thi mẫu HSK 3.0" class="w-full h-full object-cover">
+                <!-- FILE ĐỀ THI MẪU -->
+                <a href="#" target="_blank" class="group flex flex-col items-center w-full">
+                    <div class="w-full aspect-[3/4] bg-slate-100 rounded-2xl overflow-hidden shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2 border border-slate-200 flex items-center justify-center relative">
+                        <img src="test.jpg" alt="Đề thi mẫu HSK 3.0" class="w-full h-full object-cover">
                     </div>
                     <h3 class="mt-4 font-bold text-blue-900 text-center group-hover:text-blue-600 transition-colors">Đề thi mẫu HSK 3.0</h3>
                 </a>
@@ -476,7 +481,6 @@
     <!-- MODAL AUDIO HSK 1 -->
     <div id="audioModal" class="modal hidden items-center justify-center">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-6 relative m-4 flex flex-col h-[85vh] max-h-[800px]">
-            <!-- Header Modal -->
             <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-200">
                 <div class="flex items-center gap-3">
                     <div class="bg-blue-100 p-2 rounded-lg text-blue-600">
@@ -494,9 +498,7 @@
                 </button>
             </div>
 
-            <!-- Content Scroll (Danh sách 15 bài) -->
             <div class="overflow-y-auto flex-1 pr-2 space-y-5 custom-scrollbar">
-                
                 <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
                     <h4 class="font-bold text-blue-900 text-lg">第一课：AI小语，你好！</h4>
                     <p class="text-slate-600 text-sm mb-3 italic">Bài 1: Chào cậu, AI Tiểu Ngữ!</p>
@@ -616,11 +618,156 @@
                         <source src="Audio15.MP3" type="audio/mpeg">
                     </audio>
                 </div>
-
             </div>
         </div>
     </div>
-    <!-- KẾT THÚC MODAL AUDIO -->
+    <!-- KẾT THÚC MODAL AUDIO HSK 1 -->
+
+    <!-- MODAL AUDIO HSK 2 -->
+    <div id="audioModal2" class="modal hidden items-center justify-center">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-6 relative m-4 flex flex-col h-[85vh] max-h-[800px]">
+            <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-200">
+                <div class="flex items-center gap-3">
+                    <div class="bg-blue-100 p-2 rounded-lg text-blue-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800">File nghe HSK 2</h3>
+                        <p class="text-xs text-slate-500">Gồm 15 bài học căn bản</p>
+                    </div>
+                </div>
+                <button onclick="closeAudioModal2()" class="text-slate-400 hover:text-red-500 transition-colors p-2 bg-slate-50 rounded-full hover:bg-red-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+
+            <div class="overflow-y-auto flex-1 pr-2 space-y-5 custom-scrollbar">
+                
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第一课：他请我们吃北京烤鸭</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 1: Cô ấy mời chúng tôi ăn vịt quay Bắc Kinh</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au1.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第二课：还是打车去北大吧</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 2: Hay là bắt taxi đi Đại học Bắc Kinh đi！</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au2.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第三课：我想去西安旅游</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 3: Tôi muốn đi Tây An du lịch</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au3.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第四课：你穿红色的很好看</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 4: Bạn mặc màu đỏ rất đẹp</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au4.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第五课：第一次去中国朋友家</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 5: Lần đầu tiên đến nhà bạn Trung Quốc</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au5.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第六课：小雪，生日快乐！</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 6: Tiểu Tuyết, sinh nhật vui vẻ!</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au6.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第七课：他篮球打得很好</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 7: Anh ấy chơi bóng rổ rất giỏi</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au7.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第八课：虽然你忘了，但是我记得</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 8: Mặc dù bạn quên rồi, nhưng tôi vẫn nhớ</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au8.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第九课：我去买杯奶茶</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 9: Tôi đi mua cốc trà sữa</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au9.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第十课：就要考试了</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 10: Sắp thi rồi</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au10.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第十一课：我最喜欢吃中国菜</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 11: Tôi thích ăn món Trung Quốc nhất</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au11.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第十二课：这里比北京冷多了</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 12: Ở đây lạnh hơn Bắc Kinh nhiều</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au12.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第十三课：我们爱上中文课</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 13: Chúng tôi yêu giờ học tiếng Trung</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au13.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第十四课：一个人过年多没意思啊</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 14: Một mình đón Tết thật vô vị làm sao</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au14.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                    <h4 class="font-bold text-blue-900 text-lg">第十五课：我想再去一次中国</h4>
+                    <p class="text-slate-600 text-sm mb-3 italic">Bài 15: Tôi muốn đi Trung Quốc một lần nữa</p>
+                    <audio controls class="w-full h-10 rounded-md outline-none">
+                        <source src="Au15.MP3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- KẾT THÚC MODAL AUDIO HSK 2 -->
 
     <style>
         /* Tùy chỉnh thanh cuộn cho Modal Audio cho đẹp */
@@ -691,6 +838,7 @@
 
         // --- SCRIPT QUẢN LÝ MODAL AUDIO (THÔNG MINH) ---
         const audioModal = document.getElementById('audioModal');
+        const audioModal2 = document.getElementById('audioModal2');
         
         function openAudioModal() {
             audioModal.style.display = 'flex';
@@ -698,11 +846,23 @@
 
         function closeAudioModal() {
             audioModal.style.display = 'none';
-            // Khi đóng bảng, tự động tắt hết các âm thanh đang phát
             const audios = audioModal.querySelectorAll('audio');
             audios.forEach(audio => {
                 audio.pause();
-                audio.currentTime = 0; // Quay về đầu bài
+                audio.currentTime = 0; 
+            });
+        }
+
+        function openAudioModal2() {
+            audioModal2.style.display = 'flex';
+        }
+
+        function closeAudioModal2() {
+            audioModal2.style.display = 'none';
+            const audios = audioModal2.querySelectorAll('audio');
+            audios.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0; 
             });
         }
 
